@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estudo de Caso MUC</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue: #1a73e8;
@@ -21,259 +21,174 @@
     --gray-100: #f1f3f4;
     --gray-200: #e8eaed;
     --gray-400: #bdc1c6;
-    --gray-600: #80868b;
     --gray-700: #5f6368;
-    --gray-900: #202124;
     --border: #dadce0;
     --surface: #ffffff;
     --text: #202124;
-    --text-secondary: #5f6368;
+    --text2: #5f6368;
   }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { font-family:'Roboto',sans-serif; background:var(--gray-50); color:var(--text); font-size:14px; line-height:1.6; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  /* HEADER */
+  header { background:var(--surface); border-bottom:1px solid var(--border); padding:0 16px; position:sticky; top:0; z-index:200; height:56px; display:flex; align-items:center; gap:12px; box-shadow:0 1px 2px rgba(0,0,0,.07); }
+  .hico { width:36px; height:36px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+  .htitle { font-size:16px; font-weight:500; }
+  .hsub { font-size:12px; color:var(--text2); }
 
-  body {
-    font-family: 'Roboto', sans-serif;
-    background: var(--gray-50);
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+  /* TABS */
+  .tabbar { background:var(--surface); border-bottom:1px solid var(--border); display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; position:sticky; top:56px; z-index:100; }
+  .tabbar::-webkit-scrollbar { display:none; }
+  .tab { flex-shrink:0; padding:0 16px; height:48px; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:var(--text2); cursor:pointer; border-bottom:3px solid transparent; transition:.15s; white-space:nowrap; user-select:none; }
+  .tab:hover { color:var(--blue); background:var(--blue-light); }
+  .tab.active { color:var(--blue); border-bottom-color:var(--blue); }
 
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 16px;
-    position: sticky;
-    top: 0;
-    z-index: 200;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-  }
-  .header-icon {
-    width: 36px; height: 36px;
-    background: var(--blue);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .header-info h1 { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.2; }
-  .header-info p { font-size: 12px; color: var(--text-secondary); }
+  /* PANELS */
+  .panel { display:none; padding:16px; max-width:720px; margin:0 auto; padding-bottom:80px; }
+  .panel.active { display:block; }
 
-  .tab-bar {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    position: sticky;
-    top: 56px;
-    z-index: 100;
-  }
-  .tab-bar::-webkit-scrollbar { display: none; }
-  .tab {
-    flex-shrink: 0;
-    padding: 0 16px;
-    height: 48px;
-    display: flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 500;
-    color: var(--text-secondary);
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
-    white-space: nowrap;
-    user-select: none;
-  }
-  .tab:hover { color: var(--blue); background: var(--blue-light); }
-  .tab.active { color: var(--blue); border-bottom-color: var(--blue); }
-  .tab .ti { font-size: 16px; }
+  /* CARDS */
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:12px; }
+  .ctitle { font-size:14px; font-weight:500; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .sh { font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--text2); margin:20px 0 8px 2px; }
+  .sh:first-child { margin-top:4px; }
 
-  .panel { display: none; padding: 16px; max-width: 720px; margin: 0 auto; padding-bottom: 80px; }
-  .panel.active { display: block; }
+  /* CHIPS */
+  .chip { display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:12px; font-size:11px; font-weight:500; margin:2px; }
+  .cb { background:var(--blue-light); color:var(--blue); }
+  .cg { background:var(--green-light); color:var(--green); }
+  .co { background:var(--orange-light); color:var(--orange); }
+  .cp { background:var(--purple-light); color:var(--purple); }
+  .cr { background:var(--red-light); color:var(--red); }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
-  }
-  .card-title {
-    font-size: 14px; font-weight: 500; color: var(--text);
-    margin-bottom: 10px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .sec-head {
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-secondary);
-    margin: 20px 0 8px; padding-left: 2px;
-  }
-  .sec-head:first-child { margin-top: 4px; }
+  /* INFO BOXES */
+  .ib { border-radius:8px; padding:12px 14px; margin:10px 0; display:flex; gap:10px; align-items:flex-start; }
+  .ii { font-size:18px; flex-shrink:0; margin-top:1px; }
+  .il { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; margin-bottom:3px; }
+  .it { font-size:13px; line-height:1.55; }
+  .ib-b { background:var(--blue-light); } .ib-b .il { color:var(--blue); }
+  .ib-g { background:var(--green-light); } .ib-g .il { color:var(--green); }
+  .ib-o { background:var(--orange-light); } .ib-o .il { color:var(--orange); }
+  .ib-p { background:var(--purple-light); } .ib-p .il { color:var(--purple); }
+  .ib-r { background:var(--red-light); } .ib-r .il { color:var(--red); }
 
-  .chip {
-    display: inline-flex; align-items: center;
-    height: 24px; padding: 0 10px;
-    border-radius: 12px;
-    font-size: 11px; font-weight: 500;
-    margin: 2px;
-  }
-  .cb { background: var(--blue-light); color: var(--blue); }
-  .cg { background: var(--green-light); color: var(--green); }
-  .co { background: var(--orange-light); color: var(--orange); }
-  .cp { background: var(--purple-light); color: var(--purple); }
-  .cr { background: var(--red-light); color: var(--red); }
+  /* LAYOUT */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+  @media(max-width:440px){ .two-col { grid-template-columns:1fr; } }
+  .mc { background:var(--gray-50); border:1px solid var(--border); border-radius:8px; padding:12px; }
+  .mc h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--text2); margin-bottom:6px; }
+  .mc p,.mc li { font-size:13px; color:var(--text); line-height:1.5; }
+  .mc ul { padding-left:16px; }
+  .mc li { margin-bottom:3px; }
 
-  .ib {
-    border-radius: 8px; padding: 12px 14px;
-    margin: 10px 0;
-    display: flex; gap: 10px; align-items: flex-start;
-  }
-  .ib .ii { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .ib .il { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 3px; }
-  .ib .it { font-size: 13px; line-height: 1.55; }
-  .ib-b { background: var(--blue-light); }
-  .ib-b .il { color: var(--blue); }
-  .ib-g { background: var(--green-light); }
-  .ib-g .il { color: var(--green); }
-  .ib-o { background: var(--orange-light); }
-  .ib-o .il { color: var(--orange); }
-  .ib-p { background: var(--purple-light); }
-  .ib-p .il { color: var(--purple); }
-  .ib-r { background: var(--red-light); }
-  .ib-r .il { color: var(--red); }
+  table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+  th { text-align:left; padding:8px 10px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--text2); background:var(--gray-50); border-bottom:1px solid var(--border); }
+  td { padding:8px 10px; border-bottom:1px solid var(--border); color:var(--text); vertical-align:top; line-height:1.45; }
+  tr:last-child td { border-bottom:none; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-  @media (max-width: 440px) { .two-col { grid-template-columns: 1fr; } }
+  /* TIMELINE */
+  .tl { padding-left:16px; border-left:2px solid var(--blue-light); margin-top:8px; }
+  .tli { position:relative; padding:0 0 16px 16px; }
+  .tli::before { content:''; position:absolute; left:-21px; top:4px; width:10px; height:10px; border-radius:50%; background:var(--blue); border:2px solid #fff; box-shadow:0 0 0 1px var(--blue); }
+  .tli:last-child { padding-bottom:0; }
+  .tli h4 { font-size:13px; font-weight:500; margin-bottom:2px; }
+  .tli p { font-size:12px; color:var(--text2); line-height:1.45; }
 
-  .mc {
-    background: var(--gray-50);
-    border: 1px solid var(--border);
-    border-radius: 8px; padding: 12px;
-  }
-  .mc h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); margin-bottom: 6px; }
-  .mc p, .mc li { font-size: 13px; color: var(--text); line-height: 1.5; }
-  .mc ul { padding-left: 16px; }
-  .mc li { margin-bottom: 3px; }
+  /* VITALS */
+  .vr { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--gray-100); }
+  .vr:last-child { border-bottom:none; }
+  .vv { font-size:16px; font-weight:700; color:var(--red); min-width:110px; font-family:'Roboto Mono',monospace; }
+  .vl { font-size:13px; color:var(--text2); }
+  .vnota { font-size:12px; color:var(--text); }
 
-  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
-  th { text-align: left; padding: 8px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-secondary); background: var(--gray-50); border-bottom: 1px solid var(--border); }
-  td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.45; }
-  tr:last-child td { border-bottom: none; }
+  /* 3 COL */
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:10px; }
+  @media(max-width:480px){ .three-col { grid-template-columns:1fr; } }
+  .sc { background:var(--gray-50); border:1px solid var(--border); border-radius:8px; padding:12px; text-align:center; }
+  .sc .sn { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; margin:0 auto 6px; color:#fff; }
+  .sc h4 { font-size:12px; font-weight:700; margin-bottom:4px; }
+  .sc p { font-size:11px; color:var(--text2); line-height:1.4; }
 
-  .timeline { padding-left: 16px; border-left: 2px solid var(--blue-light); margin-top: 8px; }
-  .tli { position: relative; padding: 0 0 16px 16px; }
-  .tli::before { content: ''; position: absolute; left: -21px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); border: 2px solid #fff; box-shadow: 0 0 0 1px var(--blue); }
-  .tli:last-child { padding-bottom: 0; }
-  .tli h4 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
-  .tli p { font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
+  .hero { background:var(--blue); color:#fff; border-radius:8px; padding:16px; margin-bottom:12px; }
+  .hero h2 { font-size:16px; font-weight:500; margin-bottom:4px; }
+  .hero p { font-size:13px; opacity:.9; line-height:1.5; }
+  .hero .cr2 { margin-top:10px; display:flex; flex-wrap:wrap; gap:4px; }
+  .hero .cr2 .chip { background:rgba(255,255,255,.2); color:#fff; }
 
-  .vr { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--gray-100); }
-  .vr:last-child { border-bottom: none; }
-  .vv { font-size: 16px; font-weight: 700; color: var(--red); min-width: 110px; font-family: 'Roboto Mono', monospace; }
-  .vl { font-size: 13px; color: var(--text-secondary); }
-
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 10px; }
-  @media (max-width: 480px) { .three-col { grid-template-columns: 1fr; } }
-  .sc { background: var(--gray-50); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
-  .sc .snum { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin: 0 auto 6px; color: #fff; }
-  .sc h4 { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
-  .sc p { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
-
-  .hero { background: var(--blue); color: #fff; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
-  .hero h2 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
-  .hero p { font-size: 13px; opacity: 0.9; line-height: 1.5; }
-  .hero .cr2 { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
-  .hero .cr2 .chip { background: rgba(255,255,255,0.2); color: #fff; }
+  hr { border:none; border-top:1px solid var(--border); margin:12px 0; }
 
   /* QUIZ */
-  .q-top { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; margin-bottom: 12px; }
-  .q-top h2 { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
-  .q-top p { font-size: 13px; color: var(--text-secondary); }
+  .qtop { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:center; margin-bottom:12px; }
+  .qtop h2 { font-size:18px; font-weight:500; margin-bottom:4px; }
+  .qtop p { font-size:13px; color:var(--text2); }
+  .pw { height:4px; background:var(--gray-200); border-radius:4px; margin-bottom:12px; overflow:hidden; }
+  .pf { height:100%; background:var(--blue); border-radius:4px; transition:width .4s ease; }
 
-  .pw { height: 4px; background: var(--gray-200); border-radius: 4px; margin-bottom: 12px; overflow: hidden; }
-  .pf { height: 100%; background: var(--blue); border-radius: 4px; transition: width 0.4s ease; }
+  .qcard { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; display:none; }
+  .qcard.active { display:block; animation:fi .2s ease; }
+  @keyframes fi { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
 
-  .qcard { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: none; }
-  .qcard.active { display: block; animation: fi 0.2s ease; }
-  @keyframes fi { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+  .qm { display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  .qn { font-size:12px; color:var(--text2); }
+  .qt { font-size:14px; color:var(--text); line-height:1.6; margin-bottom:14px; }
+  .opts { display:flex; flex-direction:column; gap:8px; }
 
-  .qm { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-  .qn { font-size: 12px; color: var(--text-secondary); }
-  .qt { font-size: 14px; color: var(--text); line-height: 1.6; margin-bottom: 14px; }
-  .opts { display: flex; flex-direction: column; gap: 8px; }
+  .opt { display:flex; align-items:flex-start; gap:10px; background:var(--surface); border:1.5px solid var(--border); border-radius:8px; padding:10px 12px; cursor:pointer; text-align:left; width:100%; font-family:'Roboto',sans-serif; font-size:13px; color:var(--text); line-height:1.45; transition:.15s; }
+  .opt:hover:not(:disabled) { border-color:var(--blue); background:var(--blue-light); }
+  .opt:disabled { cursor:default; }
+  .opt.correct { border-color:var(--green); background:var(--green-light); color:var(--green); }
+  .opt.wrong { border-color:var(--red); background:var(--red-light); color:var(--red); }
+  .ol { width:22px; height:22px; min-width:22px; border-radius:50%; background:var(--gray-200); color:var(--text2); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+  .opt.correct .ol { background:var(--green); color:#fff; }
+  .opt.wrong .ol { background:var(--red); color:#fff; }
 
-  .opt {
-    display: flex; align-items: flex-start; gap: 10px;
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: 8px; padding: 10px 12px;
-    cursor: pointer; text-align: left; width: 100%;
-    font-family: 'Roboto', sans-serif; font-size: 13px;
-    color: var(--text); line-height: 1.45;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .opt:hover:not(:disabled) { border-color: var(--blue); background: var(--blue-light); }
-  .opt:disabled { cursor: default; }
-  .opt.correct { border-color: var(--green); background: var(--green-light); color: var(--green); }
-  .opt.wrong { border-color: var(--red); background: var(--red-light); color: var(--red); }
-  .ol { width: 22px; height: 22px; min-width: 22px; border-radius: 50%; background: var(--gray-200); color: var(--text-secondary); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .opt.correct .ol { background: var(--green); color: #fff; }
-  .opt.wrong .ol { background: var(--red); color: #fff; }
+  .fb { margin-top:12px; padding:12px 14px; border-radius:8px; font-size:13px; line-height:1.55; display:none; }
+  .fb.show { display:flex; gap:8px; align-items:flex-start; animation:fi .2s ease; }
+  .fb.fbc { background:var(--green-light); color:#1e6e3a; }
+  .fb.fbw { background:var(--red-light); color:#a50e0e; }
+  .fb .fi2 { font-size:16px; flex-shrink:0; }
 
-  .fb { margin-top: 12px; padding: 12px 14px; border-radius: 8px; font-size: 13px; line-height: 1.55; display: none; }
-  .fb.show { display: flex; gap: 8px; align-items: flex-start; animation: fi 0.2s ease; }
-  .fb.fbc { background: var(--green-light); color: #1e6e3a; }
-  .fb.fbw { background: var(--red-light); color: #a50e0e; }
-  .fb .fi2 { font-size: 16px; flex-shrink: 0; }
+  .qf { display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+  .qct { font-size:13px; color:var(--text2); }
+  .btn-n { background:var(--blue); color:#fff; border:none; border-radius:4px; padding:0 20px; height:36px; font-family:'Roboto',sans-serif; font-size:13px; font-weight:500; cursor:pointer; transition:.15s; }
+  .btn-n:hover { background:#1557b0; }
+  .btn-n:disabled { background:var(--gray-400); cursor:default; }
 
-  .qf { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
-  .qct { font-size: 13px; color: var(--text-secondary); }
-  .btn-n { background: var(--blue); color: #fff; border: none; border-radius: 4px; padding: 0 20px; height: 36px; font-family: 'Roboto', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.15s; letter-spacing: 0.02em; }
-  .btn-n:hover { background: #1557b0; }
-  .btn-n:disabled { background: var(--gray-400); cursor: default; }
-
-  .score-p { display: none; text-align: center; padding: 32px 16px; }
-  .score-p.show { display: block; animation: fi 0.3s ease; }
-  .score-circle { width: 96px; height: 96px; border-radius: 50%; background: var(--blue-light); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; border: 3px solid var(--blue); }
-  .sbig { font-size: 28px; font-weight: 700; color: var(--blue); line-height: 1; }
-  .stot { font-size: 12px; color: var(--text-secondary); }
-  .stitle { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
-  .ssub { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
-  .btn-r { background: var(--blue); color: #fff; border: none; border-radius: 4px; padding: 0 24px; height: 40px; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; letter-spacing: 0.02em; }
-  .btn-r:hover { background: #1557b0; }
-
-  hr { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  .score-p { display:none; text-align:center; padding:32px 16px; }
+  .score-p.show { display:block; animation:fi .3s ease; }
+  .scirc { width:96px; height:96px; border-radius:50%; background:var(--blue-light); display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 16px; border:3px solid var(--blue); }
+  .sbig { font-size:28px; font-weight:700; color:var(--blue); line-height:1; }
+  .stot { font-size:12px; color:var(--text2); }
+  .stitle { font-size:18px; font-weight:500; margin-bottom:6px; }
+  .ssub { font-size:13px; color:var(--text2); margin-bottom:20px; }
+  .btn-r { background:var(--blue); color:#fff; border:none; border-radius:4px; padding:0 24px; height:40px; font-family:'Roboto',sans-serif; font-size:14px; font-weight:500; cursor:pointer; }
+  .btn-r:hover { background:#1557b0; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="header-icon">📋</div>
-  <div class="header-info">
-    <h1>Estudo de Caso MUC</h1>
-    <p>Escola Técnica Santa Casa BH</p>
+  <div class="hico">📋</div>
+  <div>
+    <div class="htitle">Estudo de Caso MUC</div>
+    <div class="hsub">Escola Técnica Santa Casa BH</div>
   </div>
 </header>
 
-<div class="tab-bar">
-  <div class="tab active" onclick="showPanel('resumo',this)"><span class="ti">📄</span> Resumo</div>
-  <div class="tab" onclick="showPanel('urgencia',this)"><span class="ti">🚨</span> Urgências</div>
-  <div class="tab" onclick="showPanel('cirurgica',this)"><span class="ti">🔪</span> Cirúrgica</div>
-  <div class="tab" onclick="showPanel('uti',this)"><span class="ti">🏥</span> T. Intensiva</div>
-  <div class="tab" onclick="showPanel('quiz',this)"><span class="ti">📝</span> Quiz</div>
+<div class="tabbar">
+  <div class="tab active" onclick="showPanel('resumo',this)">📄 Resumo</div>
+  <div class="tab" onclick="showPanel('urgencia',this)">🚨 Urgências</div>
+  <div class="tab" onclick="showPanel('cirurgica',this)">🔪 Cirúrgica</div>
+  <div class="tab" onclick="showPanel('uti',this)">🏥 T. Intensiva</div>
+  <div class="tab" onclick="showPanel('quiz',this)">📝 Quiz</div>
 </div>
 
-<!-- RESUMO -->
+<!-- ===== RESUMO ===== -->
 <div id="resumo" class="panel active">
+
   <div class="hero">
     <h2>Paciente J.S.S., 38 anos — AVC Hemorrágico</h2>
-    <p>Hemorragia Subaracnóidea por ruptura de aneurisma cerebral. Exercício integrado com 4 disciplinas.</p>
+    <p>Hemorragia subaracnóidea por ruptura de aneurisma cerebral. Exercício integrado com 4 matérias.</p>
     <div class="cr2">
       <span class="chip">🚨 Urgências Clínicas</span>
       <span class="chip">🔪 Cirúrgica I</span>
@@ -282,275 +197,458 @@
     </div>
   </div>
 
-  <div class="sec-head">Linha do tempo do caso</div>
+  <div class="sh">O que aconteceu — linha do tempo simples</div>
   <div class="card">
-    <div class="timeline">
-      <div class="tli"><h4>Evento agudo → UPA via SAMU</h4><p>Cefaleia "pior da vida", rebaixamento de consciência, hemiparesia direita. PA 190×110, FC 110, SpO₂ 92%, Glicemia 280 mg/dL, GCS 10.</p></div>
-      <div class="tli"><h4>Diagnóstico → TC de crânio</h4><p>HSA confirmada por ruptura de aneurisma. Transferência para hospital de referência em neurocirurgia.</p></div>
-      <div class="tli"><h4>Cirurgia de emergência</h4><p>Craniotomia para clipagem do aneurisma, ~4h. Checklist OMS aplicado (Sign In → Time Out → Sign Out). Sem intercorrências.</p></div>
-      <div class="tli"><h4>CTI — 25 dias</h4><p>GCS 6 pós-op. Ventilação mecânica + sedação contínua + drogas vasoativas. Cuidados intensivos com foco em neuroproteção.</p></div>
-      <div class="tli"><h4>Clínica Cirúrgica — 8 dias</h4><p>Consciente, orientação parcial, déficit motor leve à direita. Dieta VO. Reabilitação em andamento.</p></div>
-      <div class="tli"><h4>Alta — total de 33 dias</h4><p>Plano: neurologista, medicações contínuas, fisioterapia e mudanças de estilo de vida.</p></div>
+    <div class="tl">
+      <div class="tli"><h4>Início súbito em casa</h4><p>Dor de cabeça muito forte ("a pior da vida"), enjoo, vômito, ficou confuso e com o braço/perna direitos fracos. Família chamou o SAMU.</p></div>
+      <div class="tli"><h4>UPA — primeiros cuidados</h4><p>Equipe iniciou monitorização, oxigênio, acesso venoso e exames. Tomografia confirmou sangramento no cérebro. Transferido para hospital com neurocirurgia.</p></div>
+      <div class="tli"><h4>Cirurgia de emergência</h4><p>Operação no crânio (craniotomia) para tratar o aneurisma rompido, durou ~4 horas. Checklist de segurança da OMS foi seguido.</p></div>
+      <div class="tli"><h4>UTI/CTI — 25 dias</h4><p>Paciente grave, precisou de respirador, sedação e medicações para manter a pressão. Equipe de enfermagem cuidando 24h.</p></div>
+      <div class="tli"><h4>Ala cirúrgica — 8 dias</h4><p>Acordado, um pouco confuso, com fraqueza leve no lado direito. Começou a comer pela boca e fazer fisioterapia.</p></div>
+      <div class="tli"><h4>Alta — total de 33 dias internado</h4><p>Saiu com receita, acompanhamento com neurologista, fisioterapia e orientações para mudar o estilo de vida.</p></div>
     </div>
   </div>
 
-  <div class="sec-head">Perfil e fatores de risco</div>
+  <div class="sh">Quem é o paciente — fatores de risco</div>
   <div class="card">
     <div class="two-col">
-      <div class="mc"><h4>Comorbidades</h4><ul><li>Obesidade grau III</li><li>Diabetes Mellitus tipo 2</li><li>Dislipidemia</li><li>HAS (implícita — PA 190×110)</li></ul></div>
-      <div class="mc"><h4>Comportamentais</h4><ul><li>Sedentarismo</li><li>Não-adesão às medicações</li></ul><p style="margin-top:6px;font-size:12px;color:var(--text-secondary)">→ Síndrome Metabólica completa</p></div>
+      <div class="mc">
+        <h4>Doenças que ele tinha</h4>
+        <ul>
+          <li>Obesidade grau III</li>
+          <li>Diabetes Mellitus tipo 2</li>
+          <li>Dislipidemia (gordura no sangue)</li>
+          <li>Pressão alta (percebida na admissão)</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Hábitos ruins</h4>
+        <ul>
+          <li>Não tomava os remédios direito</li>
+          <li>Vida sedentária, sem atividade física</li>
+        </ul>
+        <p style="margin-top:6px;font-size:12px;color:var(--text2)">Todos esses fatores poderiam ter sido controlados.</p>
+      </div>
     </div>
     <div class="ib ib-b" style="margin-top:10px">
       <span class="ii">💡</span>
-      <div><div class="il">Ponto de prova</div><div class="it">Todos os fatores de risco deste paciente são <strong>modificáveis</strong> — sedentarismo, alimentação, adesão ao tratamento. Isso é central no plano de alta e na prevenção de novos eventos cerebrovasculares.</div></div>
+      <div><div class="il">Por que isso importa na prova?</div><div class="it">Todos os fatores de risco deste paciente são <strong>evitáveis ou controláveis</strong>. A não-adesão aos remédios foi um fator decisivo. Isso vai aparecer no plano de alta — a enfermagem tem papel central em orientar o paciente sobre tomar os remédios corretamente.</div></div>
     </div>
   </div>
 
-  <div class="sec-head">Sinais vitais na admissão</div>
+  <div class="sh">Sinais vitais na chegada ao hospital</div>
   <div class="card">
-    <div class="vr"><span class="vv">190×110</span><span class="vl">mmHg — Crise hipertensiva</span></div>
-    <div class="vr"><span class="vv">110 bpm</span><span class="vl">FC — Taquicardia</span></div>
-    <div class="vr"><span class="vv">92%</span><span class="vl">SpO₂ — Hipoxemia leve</span></div>
-    <div class="vr"><span class="vv">280 mg/dL</span><span class="vl">Glicemia — Hiperglicemia grave</span></div>
-    <div class="vr"><span class="vv">GCS 10</span><span class="vl">Rebaixamento moderado de consciência</span></div>
+    <div class="vr"><span class="vv">190×110</span><span class="vl">mmHg — Pressão muito alta (crise hipertensiva)</span></div>
+    <div class="vr"><span class="vv">110 bpm</span><span class="vl">FC — Coração acelerado (taquicardia)</span></div>
+    <div class="vr"><span class="vv">92%</span><span class="vl">SpO₂ — Oxigênio baixo no sangue</span></div>
+    <div class="vr"><span class="vv">280 mg/dL</span><span class="vl">Glicemia — Açúcar muito alto no sangue</span></div>
+    <div class="vr"><span class="vv">GCS 10</span><span class="vl">Escala de Glasgow — rebaixamento de consciência</span></div>
     <div class="ib ib-o" style="margin-top:10px">
       <span class="ii">⚠️</span>
-      <div><div class="il">GCS 10 → GCS 6 no pós-op</div><div class="it">GCS ≤ 8 = indicação de intubação orotraqueal (IOT). Escala: Ocular (máx 4) + Verbal (máx 5) + Motor (máx 6) = máx 15. O GCS piorou após a cirurgia — reflexo da sedação contínua e da gravidade neurológica.</div></div>
+      <div><div class="il">Escala de Glasgow — o que é?</div><div class="it">Avalia o nível de consciência do paciente em 3 itens: <strong>abertura dos olhos</strong> (máx 4) + <strong>resposta verbal</strong> (máx 5) + <strong>resposta motora</strong> (máx 6) = máx 15. GCS 10 = consciência reduzida. GCS 6 (após a cirurgia) = muito grave — indica que o paciente precisou ser intubado.</div></div>
     </div>
   </div>
+
 </div>
 
-<!-- URGÊNCIAS -->
+<!-- ===== URGÊNCIAS ===== -->
 <div id="urgencia" class="panel">
-  <div class="sec-head">Fisiopatologia — HSA</div>
+
+  <div class="sh">O que é AVC hemorrágico?</div>
   <div class="card">
-    <div class="card-title">🧠 Hemorragia Subaracnóidea</div>
-    <p style="font-size:13px">Extravasamento de sangue para o <strong>espaço subaracnóideo</strong> (entre aracnoide e pia-máter, onde circula o LCR). O sangue aumenta subitamente a PIC e irrita as meninges.</p>
+    <div class="ctitle">🧠 Entendendo o diagnóstico — linguagem simples</div>
+    <p style="font-size:13px">Um vaso sanguíneo dentro do crânio se rompeu — neste caso, um <strong>aneurisma</strong> (uma bolsa fraca na parede do vaso). O sangue vazou para dentro do crânio, aumentando a pressão e lesionando o cérebro. Isso é o AVC hemorrágico.</p>
     <div class="ib ib-r" style="margin-top:10px">
       <span class="ii">🔴</span>
-      <div><div class="il">Causa neste caso</div><div class="it">Ruptura de aneurisma cerebral — responsável por 80–85% dos casos de HSA espontânea.</div></div>
+      <div><div class="il">Sinal que a prova pode cobrar</div><div class="it">A dor de cabeça descrita como <strong>"a pior dor de cabeça da vida"</strong>, de início muito súbito, é o sinal clássico desse tipo de sangramento cerebral. Qualquer paciente que descreva isso deve ser considerado urgência máxima.</div></div>
     </div>
     <div class="two-col">
-      <div class="mc"><h4>Sinal clássico</h4><p><strong>"Pior dor de cabeça da vida"</strong> — cefaleia thunderclap. Início súbito, intensidade máxima imediata. Principal sinal diagnóstico de HSA.</p></div>
-      <div class="mc"><h4>Outros sinais</h4><ul><li>Náuseas e vômitos</li><li>Rebaixamento de consciência</li><li>Rigidez de nuca (meningismo)</li><li>Fotofobia</li><li>Déficit motor focal</li></ul></div>
+      <div class="mc">
+        <h4>Sinais e sintomas do caso</h4>
+        <ul>
+          <li>Dor de cabeça intensa e súbita</li>
+          <li>Náuseas e vômitos</li>
+          <li>Confusão mental</li>
+          <li>Fraqueza no lado direito do corpo</li>
+          <li>Pressão alta, coração acelerado</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Por que a fraqueza é à direita?</h4>
+        <p>O lado esquerdo do cérebro controla o lado direito do corpo. Quando o sangramento acontece no hemisfério esquerdo, o paciente fica com o lado direito fraco.</p>
+        <p style="margin-top:4px;font-size:12px;color:var(--text2)">Isso é suficiente saber no técnico — sem precisar decorar nomes de vias nervosas.</p>
+      </div>
     </div>
   </div>
 
-  <div class="sec-head">Por que a fraqueza é à direita?</div>
-  <div class="card">
-    <div class="card-title">⚡ Neuroanatomia implícita</div>
-    <p style="font-size:13px">As vias motoras corticoespinais <strong>cruzam na decussação das pirâmides</strong> (bulbo). Portanto: lesão no hemisfério <strong>esquerdo</strong> → déficit motor no lado <strong>direito</strong> (contralateral).</p>
-    <div class="ib ib-b" style="margin-top:10px">
-      <span class="ii">💡</span>
-      <div><div class="il">Ponto de prova</div><div class="it">Hemiparesia direita = lesão no hemisfério esquerdo, no território da artéria cerebral média. O texto não diz isso explicitamente — é o raciocínio esperado na prova.</div></div>
-    </div>
-  </div>
-
-  <div class="sec-head">Protocolo de urgência</div>
+  <div class="sh">O que a equipe de enfermagem fez na urgência</div>
   <div class="card">
     <table>
-      <thead><tr><th>Conduta</th><th>Justificativa clínica</th></tr></thead>
+      <thead><tr><th>Cuidado realizado</th><th>Por que foi feito</th></tr></thead>
       <tbody>
-        <tr><td><strong>Oxigenoterapia</strong></td><td>SpO₂ 92% → hipóxia agrava a lesão neurológica secundária</td></tr>
-        <tr><td><strong>Acesso venoso calibroso</strong></td><td>Jelco 14G ou 16G para infusão rápida de medicação/volume</td></tr>
-        <tr><td><strong>Monitor cardíaco + oxímetro</strong></td><td>Monitorização não invasiva contínua dos parâmetros vitais</td></tr>
-        <tr><td><strong>PA seriada</strong></td><td>PA elevada aumenta risco de ressangramento pré-cirúrgico</td></tr>
-        <tr><td><strong>Controle glicêmico</strong></td><td>Glicemia 280 → hiperglicemia agrava edema cerebral</td></tr>
-        <tr><td><strong>TC de crânio s/ contraste</strong></td><td>Exame de escolha: rápida, disponível, 92% sensibilidade em 24h</td></tr>
+        <tr><td><strong>Colocou oxigênio</strong></td><td>SpO₂ estava 92% — oxigênio abaixo do normal prejudica o cérebro</td></tr>
+        <tr><td><strong>Puncionou acesso venoso</strong></td><td>Precisa ser uma veia calibrosa (grossa) para passar medicação e soro rápido</td></tr>
+        <tr><td><strong>Monitorização contínua</strong></td><td>Monitor cardíaco, oxímetro e pressão de hora em hora para ver como o paciente evolui</td></tr>
+        <tr><td><strong>Coletou sangue para exames</strong></td><td>Ver como estão glicemia, sangue, coagulação, entre outros</td></tr>
+        <tr><td><strong>Controlou a pressão com remédio</strong></td><td>Pressão 190×110 é perigosa — pode piorar o sangramento</td></tr>
+        <tr><td><strong>Controlou a glicemia</strong></td><td>Glicemia 280 mg/dL é muito alta — açúcar descontrolado piora a lesão cerebral</td></tr>
+        <tr><td><strong>Acompanhou até a TC</strong></td><td>A tomografia confirma o sangramento no cérebro — exame de urgência</td></tr>
       </tbody>
     </table>
     <div class="ib ib-b" style="margin-top:10px">
       <span class="ii">💡</span>
-      <div><div class="il">TC vs. RNM na urgência</div><div class="it">A TC leva minutos, está disponível 24h e detecta sangue agudo com alta sensibilidade. A RNM demora 45–60 min e raramente está disponível na urgência. Para visualizar o aneurisma, usa-se angioTC ou arteriografia cerebral.</div></div>
+      <div><div class="il">Detalhe importante</div><div class="it">O paciente foi posicionado com a <strong>cabeceira elevada</strong> (e não deitado plano). Isso ajuda a diminuir a pressão dentro do crânio. É um cuidado simples que faz diferença.</div></div>
     </div>
   </div>
 
-  <div class="sec-head">Complicações da HSA</div>
+  <div class="sh">Sinais de piora que a enfermagem deve comunicar</div>
   <div class="card">
-    <div class="two-col">
-      <div class="mc"><h4>Precoces</h4><ul><li>Ressangramento (risco ↑ nas 48h)</li><li>Hidrocefalia aguda</li><li>Edema cerebral</li><li>Convulsões</li><li>PIC elevada</li></ul></div>
-      <div class="mc"><h4>Tardias (4º–14º dia)</h4><ul><li><strong>Vasoespasmo cerebral</strong></li><li>Isquemia cerebral tardia (DCI)</li><li>PAV, IPCS e outras IRAS</li><li>TVP e TEP</li><li>Sequelas neurológicas</li></ul></div>
+    <div class="ib ib-r">
+      <span class="ii">🚨</span>
+      <div><div class="il">Sempre comunicar ao enfermeiro se o paciente apresentar</div>
+      <div class="it">
+        <ul style="padding-left:16px;margin-top:4px">
+          <li>Piora da confusão mental ou não acorda quando chamado</li>
+          <li>Coração ficando mais lento junto com pressão subindo (sinal de perigo)</li>
+          <li>Respiração irregular ou pausa para respirar</li>
+          <li>Queda da saturação de oxigênio</li>
+          <li>Convulsão</li>
+          <li>Saída de sangue pelo nariz, ouvido ou curativo</li>
+        </ul>
+      </div></div>
     </div>
-    <div class="ib ib-r" style="margin-top:10px">
-      <span class="ii">🔴</span>
-      <div><div class="il">Tríade de Cushing — PIC elevada</div><div class="it"><strong>Bradicardia + Hipertensão + Irregularidade respiratória.</strong> Indica herniação cerebral iminente. Emergência absoluta.</div></div>
+    <div class="ib ib-o" style="margin-top:0">
+      <span class="ii">⚠️</span>
+      <div><div class="il">Tríade de Cushing — sinal de alerta máximo</div><div class="it">Se o técnico observar <strong>coração lento + pressão subindo + respiração estranha</strong> ao mesmo tempo, deve comunicar o enfermeiro imediatamente. São sinais de que a pressão dentro do crânio está muito alta.</div></div>
     </div>
   </div>
+
 </div>
 
-<!-- CIRÚRGICA -->
+<!-- ===== CIRÚRGICA ===== -->
 <div id="cirurgica" class="panel">
-  <div class="sec-head">Cirúrgica I — Checklist OMS de Cirurgia Segura</div>
+
+  <div class="sh">Cirúrgica I — Centro Cirúrgico e Segurança do Paciente</div>
   <div class="card">
-    <div class="card-title">✅ As 3 etapas obrigatórias</div>
+    <div class="ctitle">✅ Checklist de Cirurgia Segura — OMS</div>
+    <p style="font-size:13px;margin-bottom:10px">É uma lista de verificação obrigatória em toda cirurgia. Serve para evitar erros graves como operar o lugar errado ou esquecer compressas dentro do paciente. Tem <strong>3 momentos</strong>:</p>
     <div class="three-col">
-      <div class="sc"><div class="snum" style="background:var(--blue)">1</div><h4 style="color:var(--blue)">Sign In</h4><p>Antes da indução anestésica. Confirma identidade, alergias, consentimento e equipamentos.</p></div>
-      <div class="sc"><div class="snum" style="background:var(--orange)">2</div><h4 style="color:var(--orange)">Time Out</h4><p>Antes da incisão. Toda a equipe pausa. Confirma paciente, procedimento, sítio cirúrgico e antibiótico.</p></div>
-      <div class="sc"><div class="snum" style="background:var(--green)">3</div><h4 style="color:var(--green)">Sign Out</h4><p>Antes de sair da sala. Conta instrumentais, compressas e agulhas. Orienta cuidados pós-op.</p></div>
+      <div class="sc">
+        <div class="sn" style="background:var(--blue)">1</div>
+        <h4 style="color:var(--blue)">Sign In</h4>
+        <p>Antes da anestesia. Confirma nome do paciente, alergia, cirurgia correta e que o equipamento está funcionando.</p>
+      </div>
+      <div class="sc">
+        <div class="sn" style="background:var(--orange)">2</div>
+        <h4 style="color:var(--orange)">Time Out</h4>
+        <p>Antes de cortar. Toda a equipe para e confirma em voz alta: paciente certo, cirurgia certa, local certo.</p>
+      </div>
+      <div class="sc">
+        <div class="sn" style="background:var(--green)">3</div>
+        <h4 style="color:var(--green)">Sign Out</h4>
+        <p>Antes do paciente sair da sala. Conta compressas, instrumentos e agulhas. Não pode faltar nada.</p>
+      </div>
     </div>
-    <div class="ib ib-o" style="margin-top:10px">
+    <div class="ib ib-o" style="margin-top:12px">
       <span class="ii">⚠️</span>
-      <div><div class="il">Quem conduz o Time Out?</div><div class="it">A <strong>equipe de enfermagem</strong>, em conjunto com cirurgião e anestesista. O técnico de enfermagem tem papel ativo na segurança cirúrgica — não é apenas suporte.</div></div>
+      <div><div class="il">Quem aplica o checklist?</div><div class="it">A <strong>equipe de enfermagem</strong> é responsável por conduzir o checklist junto com o cirurgião e o anestesista. Não é só o médico — o técnico faz parte disso.</div></div>
     </div>
   </div>
 
-  <div class="sec-head">Craniotomia para clipagem</div>
+  <div class="sh">Cuidados da enfermagem no Centro Cirúrgico</div>
   <div class="card">
-    <div class="card-title">🧠 O procedimento</div>
-    <p style="font-size:13px">Abertura do crânio (retalho ósseo) para acessar o aneurisma e posicionar um <strong>clipe metálico no colo</strong> do aneurisma, interrompendo o fluxo de sangue para a bolsa e prevenindo ressangramento.</p>
-    <div class="two-col" style="margin-top:10px">
-      <div class="mc"><h4>Duração: ~4 horas</h4><p>Riscos de <strong>hipotermia</strong>, LPP por posicionamento prolongado e síndrome compartimental. Enfermagem monitora ativamente.</p></div>
-      <div class="mc"><h4>Monitorização intraop</h4><ul><li>PA invasiva (linha arterial)</li><li>PIC (pressão intracraniana)</li><li>ECG contínuo</li><li>Temperatura corporal</li><li>Diurese horária</li></ul></div>
+    <div class="two-col">
+      <div class="mc">
+        <h4>Antes da cirurgia</h4>
+        <ul>
+          <li>Conferir identidade do paciente (pulseira)</li>
+          <li>Confirmar que está em jejum</li>
+          <li>Retirar próteses, joias, esmalte</li>
+          <li>Verificar se foi feito tricotomia (se necessário)</li>
+          <li>Pré-medicação anestésica conforme prescrito</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Durante e após a cirurgia</h4>
+        <ul>
+          <li>Auxiliar no posicionamento do paciente</li>
+          <li>Contar e conferir materiais (compressas, agulhas)</li>
+          <li>Observar sinais vitais</li>
+          <li>Evitar que o paciente esfrie (hipotermia)</li>
+          <li>Acompanhar transferência para a UTI</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ib ib-b" style="margin-top:10px">
+      <span class="ii">💡</span>
+      <div><div class="il">A cirurgia durou ~4 horas</div><div class="it">Cirurgias longas aumentam o risco de <strong>lesão por pressão</strong> porque o paciente fica muito tempo na mesma posição sem conseguir se mexer. O posicionamento correto na mesa cirúrgica e o acolchoamento das proeminências ósseas são responsabilidade da enfermagem.</div></div>
     </div>
   </div>
 
-  <div class="sec-head">Cirúrgica II — Pós-op na clínica cirúrgica</div>
+  <div class="sh">Cirúrgica II — Pós-operatório na ala cirúrgica</div>
   <div class="card">
-    <div class="card-title">🛏 Clínica cirúrgica (8 dias)</div>
-    <p style="font-size:13px">Paciente <strong>consciente, orientação parcial</strong>, déficit motor leve à direita. Aceita dieta VO. Fisioterapia em andamento.</p>
+    <div class="ctitle">🛏 Situação do paciente ao sair do CTI</div>
+    <p style="font-size:13px">Depois de 25 dias no CTI, o paciente foi transferido para a ala cirúrgica. Estava acordado, mas um pouco confuso e com fraqueza no lado direito. Ficou mais 8 dias até receber alta.</p>
     <div class="ib ib-r" style="margin-top:10px">
       <span class="ii">⚠️</span>
-      <div><div class="il">Risco prioritário nessa fase</div><div class="it"><strong>Queda.</strong> Orientação parcial + déficit motor = combinação de alto risco. Medidas: grades elevadas, cama baixa, campainha acessível, supervisão frequente.</div></div>
+      <div><div class="il">Risco principal nessa fase: QUEDA</div><div class="it">Paciente confuso + fraqueza no lado direito = risco alto de cair. A enfermagem deve: deixar a cama baixa, colocar as grades, deixar a campainha ao alcance, avisar o paciente para pedir ajuda antes de levantar.</div></div>
     </div>
     <div class="ib ib-g" style="margin-top:8px">
       <span class="ii">✅</span>
-      <div><div class="il">Papel da enfermagem na alta</div><div class="it">Educação do paciente e familiar: sinais de alarme (nova cefaleia súbita, piora do déficit), adesão às medicações, cuidados domiciliares e prevenção de novos eventos.</div></div>
+      <div><div class="il">Outros cuidados importantes nessa fase</div><div class="it">Verificar sinais vitais com frequência · Controlar glicemia (ele tem diabetes) · Ajudar com higiene e alimentação · Incentivar fisioterapia · Orientar paciente e família sobre os cuidados em casa.</div></div>
     </div>
   </div>
 
-  <div class="sec-head">Plano terapêutico de alta</div>
+  <div class="sh">Alta hospitalar — orientações da enfermagem</div>
   <div class="card">
+    <p style="font-size:13px;margin-bottom:10px">O técnico de enfermagem ajuda a orientar o paciente e a família na saída do hospital. Isso é parte do cuidado e aparece na prova:</p>
     <table>
-      <thead><tr><th>Componente</th><th>Objetivo</th></tr></thead>
+      <thead><tr><th>Orientação</th><th>Por que é importante</th></tr></thead>
       <tbody>
-        <tr><td>Acompanhamento neurológico</td><td>Monitorar sequelas e prevenir novos eventos cerebrovasculares</td></tr>
-        <tr><td>Medicações contínuas</td><td>Controle de PA, DM, dislipidemia — corrigir a não-adesão prévia</td></tr>
-        <tr><td>Fisioterapia</td><td>Recuperar o déficit motor residual à direita</td></tr>
-        <tr><td>Mudança de estilo de vida</td><td>Dieta, atividade física — fatores modificáveis que causaram o evento</td></tr>
+        <tr><td>Tomar todos os remédios todos os dias</td><td>A não-adesão foi o que contribuiu para o AVC acontecer</td></tr>
+        <tr><td>Não faltar às consultas com o neurologista</td><td>Acompanhar a recuperação e prevenir novo evento</td></tr>
+        <tr><td>Fazer fisioterapia regularmente</td><td>Recuperar a força no lado direito</td></tr>
+        <tr><td>Mudar alimentação e começar atividade física</td><td>Controlar a obesidade, diabetes e colesterol</td></tr>
+        <tr><td>Voltar ao hospital se tiver dor de cabeça forte de novo</td><td>Pode indicar novo sangramento — é emergência</td></tr>
       </tbody>
     </table>
   </div>
+
 </div>
 
-<!-- T. INTENSIVA -->
+<!-- ===== T. INTENSIVA ===== -->
 <div id="uti" class="panel">
-  <div class="sec-head">Status pós-operatório no CTI</div>
+
+  <div class="sh">Por que o paciente foi para o CTI?</div>
   <div class="card">
-    <div class="two-col">
-      <div class="mc"><h4>Quadro clínico</h4><ul><li>GCS 6 (gravíssimo)</li><li>Ventilação mecânica</li><li>Sedação contínua</li><li>Drogas vasoativas</li></ul></div>
-      <div class="mc"><h4>GCS ≤ 8</h4><p>Indicação de IOT — paciente não consegue proteger a via aérea.</p><p style="margin-top:4px;font-size:12px;color:var(--red)">GCS foi de 10 (admissão) para 6 (pós-op) — efeito da sedação e da gravidade cirúrgica.</p></div>
+    <p style="font-size:13px">Após a cirurgia, o paciente estava muito grave. Precisava de:</p>
+    <div class="two-col" style="margin-top:10px">
+      <div class="mc">
+        <h4>Suporte de vida</h4>
+        <ul>
+          <li><strong>Respirador (ventilação mecânica)</strong> — pulmão não conseguia trabalhar sozinho</li>
+          <li><strong>Sedação</strong> — remédio para manter o paciente dormindo</li>
+          <li><strong>Drogas vasoativas</strong> — remédios para manter a pressão arterial no nível certo</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Glasgow de 6 — o que significa?</h4>
+        <p>Muito grave. Paciente não abre os olhos, não fala, não obedece comandos de forma adequada.</p>
+        <p style="margin-top:6px;font-size:12px;color:var(--red)">Glasgow ≤ 8 → paciente não consegue proteger a própria via aérea → precisa de tubo (intubação).</p>
+      </div>
     </div>
   </div>
 
-  <div class="sec-head">Bundle de PAV — Pneumonia Associada à Ventilação</div>
+  <div class="sh">Cuidados de enfermagem no CTI — o que o texto cita</div>
   <div class="card">
-    <div class="card-title">🫁 Medidas preventivas obrigatórias</div>
+    <div class="ctitle">🏥 Por que cada cuidado é feito</div>
     <table>
-      <thead><tr><th>Medida</th><th>Justificativa</th></tr></thead>
+      <thead><tr><th>Cuidado</th><th>Para que serve</th></tr></thead>
       <tbody>
-        <tr><td>Cabeceira 30–45°</td><td>Reduz refluxo e microaspiração — principal mecanismo de PAV</td></tr>
-        <tr><td>Higiene oral com clorexidina</td><td>Reduz carga bacteriana orofaríngea</td></tr>
-        <tr><td>Cuff do TOT inflado corretamente</td><td>Evita microaspiração de secreções subglóticas</td></tr>
-        <tr><td>Circuito do ventilador sem condensação</td><td>Água acumulada = reservatório bacteriano</td></tr>
-        <tr><td>Higiene das mãos</td><td>Principal barreira à transmissão de IRAS</td></tr>
+        <tr><td><strong>Cabeceira elevada a 30°</strong></td><td>Reduz a pressão dentro do crânio e evita que o conteúdo do estômago vá para os pulmões</td></tr>
+        <tr><td><strong>Higiene oral</strong></td><td>Evita que bactérias da boca causem pneumonia (PAV)</td></tr>
+        <tr><td><strong>Mudança de decúbito</strong></td><td>Evitar escaras (lesão por pressão) — paciente fica muito tempo parado</td></tr>
+        <tr><td><strong>Controle glicêmico</strong></td><td>Açúcar alto piora a lesão cerebral e aumenta risco de infecção</td></tr>
+        <tr><td><strong>Avaliação neurológica seriada</strong></td><td>Observar se o paciente está melhorando ou piorando o nível de consciência</td></tr>
+        <tr><td><strong>Profilaxia de TVP</strong></td><td>Paciente imóvel tem risco de trombose nas pernas — meias compressivas e mobilização</td></tr>
+        <tr><td><strong>Monitorização de sinais vitais</strong></td><td>Observar PA, FC, SpO₂ e temperatura continuamente</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="sec-head">Prevenção de LPP — Escala de Braden</div>
+  <div class="sh">Lesão por Pressão (LPP) — tema importante do CTI</div>
   <div class="card">
-    <div class="card-title">🩹 Lesão por Pressão no paciente crítico</div>
-    <p style="font-size:13px">Sedado + VM + imóvel = risco <strong>muito alto</strong> de LPP. Fatores: imobilidade, drogas vasoativas (↓ perfusão periférica), umidade, déficit nutricional.</p>
+    <div class="ctitle">🩹 O que é e como prevenir</div>
+    <p style="font-size:13px">Quando o paciente fica muito tempo na mesma posição, a pele sobre os ossos (calcanhar, sacro, cotovelo) fica sem circulação e pode necrosar. No CTI, com sedação e respirador, o risco é muito alto.</p>
     <div class="ib ib-p" style="margin-top:10px">
       <span class="ii">📋</span>
-      <div><div class="il">Medidas obrigatórias</div><div class="it">Mudança de decúbito a cada 2h · Hidratação da pele · Proteção em proeminências ósseas · Colchão de redistribuição de pressão · Nutrição enteral precoce · Avaliação diária com <strong>Escala de Braden</strong>.</div></div>
+      <div><div class="il">Como prevenir — papel do técnico</div><div class="it">Mudar o decúbito a cada 2 horas · Manter a pele limpa e hidratada · Proteger as proeminências ósseas com coxins · Verificar e comunicar qualquer vermelhidão na pele · Usar a <strong>Escala de Braden</strong> para avaliar o risco.</div></div>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
-      <span class="chip cp">I: eritema sem embranquecimento</span>
-      <span class="chip cp">II: perda parcial da derme</span>
-      <span class="chip cp">III: perda total da pele</span>
-      <span class="chip cp">IV: perda total + tecidos profundos</span>
+      <span class="chip cp">Estágio I: pele vermelha que não embranquece</span>
+      <span class="chip cp">Estágio II: bolha ou ferida rasa</span>
+      <span class="chip cp">Estágio III: ferida profunda na pele</span>
+      <span class="chip cp">Estágio IV: atinge músculo ou osso</span>
     </div>
   </div>
 
-  <div class="sec-head">Neuroproteção</div>
+  <div class="sh">Prevenção de infecções no CTI (IRAS)</div>
   <div class="card">
-    <div class="card-title">🧠 Proteger o cérebro de danos secundários</div>
+    <p style="font-size:13px;margin-bottom:10px">Paciente com respirador, sonda vesical e cateter venoso fica mais exposto a infecções. O técnico de enfermagem é a principal barreira contra essas infecções.</p>
     <div class="two-col">
-      <div class="mc"><h4>Alvos a controlar</h4><ul><li>PIC &lt; 20 mmHg</li><li>Temperatura ≤ 37,8°C</li><li>Glicemia 80–180 mg/dL</li><li>SpO₂ &gt; 94%</li><li>PA dentro da meta prescrita</li></ul></div>
-      <div class="mc"><h4>Cabeceira 30° — dupla função</h4><p>Melhora drenagem venosa cerebral → reduz PIC.</p><p style="margin-top:4px">Eleva cabeça em relação ao estômago → previne microaspiração → previne PAV.</p><p style="margin-top:4px;font-size:12px;color:var(--blue)"><strong>Uma posição, dois objetivos.</strong></p></div>
+      <div class="mc">
+        <h4>Principais infecções no CTI</h4>
+        <ul>
+          <li><strong>PAV</strong> — pneumonia do respirador</li>
+          <li><strong>ITU</strong> — infecção urinária da sonda</li>
+          <li><strong>IPCS</strong> — infecção do cateter venoso</li>
+          <li><strong>ISC</strong> — infecção da cirurgia</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Como prevenir</h4>
+        <ul>
+          <li>Lavar as mãos sempre (principal medida!)</li>
+          <li>Técnica asséptica em todos os procedimentos</li>
+          <li>Higiene oral do paciente intubado</li>
+          <li>Trocar curativo com técnica limpa</li>
+          <li>Retirar sonda e cateter assim que possível</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <div class="sec-head">IRAS e desmame ventilatório</div>
+  <div class="sh">Melhora e saída do CTI</div>
   <div class="card">
-    <div class="card-title">⚠️ Principais IRAS no CTI</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-      <span class="chip cr">PAV — Pneumonia Assoc. à VM</span>
-      <span class="chip cr">IPCS — por cateter central</span>
-      <span class="chip cr">ITU — por cateter vesical</span>
-      <span class="chip cr">ISC — sítio cirúrgico</span>
-    </div>
-    <hr>
-    <div class="card-title" style="margin-top:4px">📈 Desmame ventilatório</div>
-    <p style="font-size:13px">Critérios para considerar extubação:</p>
-    <ul style="padding-left:16px;margin-top:6px;font-size:13px;color:var(--text)">
-      <li>GCS ≥ 8 com reflexo de tosse presente</li>
-      <li>Hemodinâmica estável (sem ou baixa dose de vasopressor)</li>
-      <li>SpO₂ e gasometria dentro dos parâmetros</li>
-      <li>Respiração espontânea adequada (Tubo T ou PSV)</li>
-    </ul>
+    <p style="font-size:13px">Com o tempo, o paciente foi acordando (a sedação foi sendo reduzida), começou a respirar melhor sozinho e o respirador foi retirado gradualmente. A fisioterapia começou ainda no CTI, ajudando a recuperar a força e a respiração.</p>
     <div class="ib ib-g" style="margin-top:10px">
       <span class="ii">✅</span>
-      <div><div class="il">Fisioterapia precoce no CTI</div><div class="it">Fisioterapia motora e respiratória iniciadas no CTI melhoram o prognóstico funcional e contribuem para o desmame ventilatório mais seguro.</div></div>
+      <div><div class="il">Por que a fisioterapia começa cedo?</div><div class="it">Quanto mais tempo o paciente fica parado, mais fraco fica. Começar a fisioterapia motora (mover os membros) e respiratória ainda no CTI ajuda o paciente a recuperar mais rápido e a sair do respirador com mais segurança.</div></div>
     </div>
   </div>
+
 </div>
 
-<!-- QUIZ -->
+<!-- ===== QUIZ ===== -->
 <div id="quiz" class="panel">
-  <div class="q-top">
+  <div class="qtop">
     <h2>Quiz — Estudo de Caso MUC</h2>
-    <p>16 questões · 4 disciplinas · Alternativas A a D</p>
+    <p>14 questões · 4 disciplinas · Alternativas A a D</p>
   </div>
   <div class="pw"><div class="pf" id="pf" style="width:0%"></div></div>
   <div id="qc"></div>
   <div class="score-p" id="sp">
-    <div class="score-circle" id="scirc">
+    <div class="scirc" id="scirc">
       <div class="sbig" id="sbig">—</div>
-      <div class="stot" id="stot">/16</div>
+      <div class="stot" id="stot">/14</div>
     </div>
     <div class="stitle" id="stitle">Resultado</div>
     <div class="ssub" id="ssub"></div>
     <button class="btn-r" onclick="restart()">Reiniciar quiz</button>
   </div>
   <div class="qf" id="qfoot">
-    <span class="qct" id="qct">1 de 16</span>
+    <span class="qct" id="qct">1 de 14</span>
     <button class="btn-n" id="btn" onclick="nextQ()" disabled>Próxima</button>
   </div>
 </div>
 
 <script>
-const QS=[
-  {d:"Urgências Clínicas",dc:"cr",t:"O paciente J.S.S. descreveu a cefaleia como 'a pior dor de cabeça da vida', de início súbito. Essa característica é denominada cefaleia thunderclap e é o principal sinal de alerta clínico de qual condição?",o:["Enxaqueca com aura","Hemorragia Subaracnóidea (HSA)","Meningite bacteriana aguda","Acidente Isquêmico Transitório (AIT)"],c:1,f:"A cefaleia em trovão (thunderclap) — súbita, com intensidade máxima em segundos — é o sinal clássico de HSA por ruptura de aneurisma cerebral. Diferencia-se da enxaqueca pelo caráter abrupto e por ser, para o paciente, diferente de qualquer dor prévia."},
-  {d:"Urgências Clínicas",dc:"cr",t:"Na admissão, J.S.S. apresentava SpO₂ de 92% em ar ambiente. Qual é a conduta prioritária de enfermagem nesse momento?",o:["Solicitar gasometria arterial e aguardar o resultado antes de agir","Iniciar suporte de oxigênio imediatamente","Posicionar o paciente em decúbito dorsal horizontal","Administrar diurético para reduzir a pressão intracraniana"],c:1,f:"SpO₂ de 92% indica hipoxemia. O cérebro lesionado é extremamente sensível à hipóxia, que agrava a lesão neurológica secundária. A oxigenoterapia deve ser iniciada imediatamente. Decúbito dorsal plano é contraindicado no AVC hemorrágico pois aumenta a PIC."},
-  {d:"Urgências Clínicas",dc:"cr",t:"Por que a TC de crânio sem contraste é o exame de escolha na urgência para suspeita de HSA, e não a RNM?",o:["A RNM é contraindicada em pacientes com aneurisma intracraniano","A TC detecta sangue agudo com rapidez e alta disponibilidade na urgência","A RNM tem menor sensibilidade para qualquer tipo de hemorragia cerebral","A TC visualiza o aneurisma com mais precisão e dispensa outros exames"],c:1,f:"A TC é realizada em minutos, está disponível 24h e tem sensibilidade de ~92% para HSA nas primeiras 24h. A RNM é igualmente sensível mas demora 45–60 min e é impraticável na emergência. Para visualizar o aneurisma, usa-se angioTC ou arteriografia cerebral."},
-  {d:"Urgências Clínicas",dc:"cr",t:"J.S.S. apresentou fraqueza no lado direito do corpo. Esse achado indica lesão em qual hemisfério e por qual motivo?",o:["Hemisfério direito — o controle motor é ipsilateral ao déficit","Hemisfério esquerdo — as vias motoras cruzam na decussação das pirâmides, no bulbo","Cerebelo — responsável pela coordenação motora de ambos os lados","Tronco encefálico — afeta os dois lados simetricamente"],c:1,f:"As vias motoras corticoespinais cruzam na decussação das pirâmides (bulbo), tornando o controle motor contralateral. Lesão no hemisfério esquerdo → hemiparesia no lado direito. Este raciocínio de neuroanatomia não está descrito no texto — é o 'além do óbvio' que a prova exige."},
-  {d:"Urgências Clínicas",dc:"cr",t:"Por que o controle glicêmico rigoroso é especialmente importante no contexto de lesão cerebral aguda?",o:["A hiperglicemia é contraindicação absoluta a procedimentos neurocirúrgicos","A hiperglicemia agrava o edema e a lesão neurológica secundária, piorando o prognóstico","A insulina tem efeito neuroprotetor direto independentemente da glicemia","A hipoglicemia é improvável em diabéticos e portanto não precisa ser monitorada"],c:1,f:"A hiperglicemia no contexto de lesão cerebral aguda amplifica o edema celular, a inflamação e a zona de necrose. A meta em neurointensivismo é 80–180 mg/dL. Tanto hiper quanto hipoglicemia são danosas — o controle visa o intervalo terapêutico, não a hipoglicemia."},
-  {d:"Cirúrgica I",dc:"cg",t:"O Checklist de Cirurgia Segura da OMS tem três etapas. Qual alternativa descreve corretamente a sequência e o momento de cada uma?",o:["Sign Out (antes da anestesia) → Time Out (durante a cirurgia) → Sign In (ao sair da sala)","Sign In (antes da anestesia) → Time Out (antes da incisão) → Sign Out (antes de sair da sala)","Time Out (antes da anestesia) → Sign In (antes da incisão) → Sign Out (na recuperação)","Sign In (antes da incisão) → Time Out (durante a cirurgia) → Sign Out (na alta)"],c:1,f:"SIGN IN (antes da indução anestésica — identidade, alergias, consentimento) → TIME OUT (imediatamente antes da incisão — toda equipe pausa, confirma paciente/procedimento/sítio/antibiótico) → SIGN OUT (antes do paciente sair da sala — conta materiais, orienta pós-op)."},
-  {d:"Cirúrgica I",dc:"cg",t:"Durante o Time Out, qual profissional é responsável por conduzir a verificação do checklist?",o:["O cirurgião principal, que lidera todo o procedimento","O anestesiologista, por ter visão global do paciente durante a indução","A equipe de enfermagem, com participação ativa de toda a equipe cirúrgica","O circulante de sala, de forma exclusiva e independente"],c:2,f:"A equipe de enfermagem conduz o Time Out — realizando a pausa e verificando cada item em conjunto com cirurgião e anestesista. O técnico de enfermagem tem papel ativo na segurança cirúrgica. Todos os membros da equipe devem participar e qualquer um pode sinalizar inconformidades."},
-  {d:"Cirúrgica I",dc:"cg",t:"A craniotomia de J.S.S. durou ~4 horas. Qual risco relacionado ao posicionamento cirúrgico prolongado a enfermagem deve monitorar ativamente?",o:["Hipoglicemia por jejum prolongado sem reposição endovenosa","Lesão por Pressão (LPP) em proeminências ósseas pelo tempo na mesa cirúrgica","Hemorragia digestiva alta por úlcera de estresse intraoperatória","Hipertermia por exposição prolongada ao campo operatório"],c:1,f:"Cirurgias longas (>2h) aumentam significativamente o risco de LPP. A pressão contínua sobre proeminências ósseas (calcanhares, sacro, occipital) compromete a perfusão tecidual, gerando isquemia e necrose. O posicionamento e acolchoamento adequados são responsabilidade da equipe de enfermagem."},
-  {d:"Cirúrgica II",dc:"co",t:"Ao ser transferido do CTI, J.S.S. encontrava-se consciente, com orientação parcial e déficit motor leve à direita. Qual é o principal risco de segurança nessa fase?",o:["Broncoaspiração decorrente de resíduo gástrico elevado","Queda, pela combinação de orientação parcial e déficit motor residual","Ressangramento do aneurisma clipado no pós-operatório tardio","Rejeição ao implante do clipe metálico no aneurisma"],c:1,f:"Orientação parcial (confusão) + déficit motor = risco altíssimo de queda. O paciente pode tentar levantar sem pedir ajuda, não calcular distâncias e ter força insuficiente para se apoiar. Medidas: grades elevadas, cama baixa, campainha acessível, supervisão frequente."},
-  {d:"Cirúrgica II",dc:"co",t:"Relacionando ao histórico do paciente, qual fator desencadeante do evento agudo o plano de alta deve especialmente abordar?",o:["A predisposição genética ao aneurisma cerebral, que deve ser investigada na família","A não-adesão às medicações, que contribuiu para o descontrole das comorbidades","O sedentarismo, que é o único fator de risco identificado no caso","A dislipidemia isolada, principal causa de ruptura de aneurisma cerebral"],c:1,f:"O texto informa que o paciente 'fazia uso irregular de medicações'. O descontrole da PA, do DM e da dislipidemia por não-adesão foi o principal fator modificável que contribuiu para o evento. A educação sobre adesão é o ponto central do plano de alta — papel direto da enfermagem."},
-  {d:"Terapia Intensiva",dc:"cp",t:"A cabeceira do leito mantida a 30° no CTI tem dupla finalidade. Qual alternativa descreve corretamente essas duas funções?",o:["Facilitar a diurese e reduzir edema de membros inferiores","Reduzir a PIC e prevenir a Pneumonia Associada à Ventilação (PAV)","Facilitar a ventilação mecânica e evitar TVP por imobilidade","Prevenir LPP sacral e melhorar o retorno venoso cardíaco"],c:1,f:"A cabeceira a 30° melhora a drenagem venosa cerebral, reduzindo a PIC (neuroproteção). Ao mesmo tempo, eleva a cabeça em relação ao estômago, reduzindo refluxo e microaspiração — principal mecanismo de PAV em intubados. Uma posição, dois objetivos críticos."},
-  {d:"Terapia Intensiva",dc:"cp",t:"A Tríade de Cushing indica elevação grave da PIC. Qual é a combinação correta dos três sinais?",o:["Febre alta + taquicardia + hipotensão arterial","Bradicardia + hipertensão + irregularidade respiratória","Midríase bilateral + convulsão + hipoglicemia severa","Taquicardia + hipoxemia + alteração aguda da consciência"],c:1,f:"A Tríade de Cushing consiste em: Bradicardia reflexa + Hipertensão sistêmica + Irregularidade respiratória (Cheyne-Stokes ou apneia). É resposta fisiológica à isquemia cerebral por PIC elevada. Indica herniação cerebral iminente — emergência absoluta."},
-  {d:"Terapia Intensiva",dc:"cp",t:"Qual alternativa descreve corretamente o Bundle de prevenção de PAV?",o:["Antibioticoterapia profilática, cultura de secreção diária e isolamento respiratório","Cabeceira 30–45°, higiene oral com clorexidina, cuff do TOT inflado corretamente e circuito sem condensação","Fisioterapia respiratória 3x/dia, nebulização contínua e aspiração de secreções a cada hora","Traqueostomia precoce, CPAP noturno e intubação somente em último recurso"],c:1,f:"O Bundle de PAV inclui medidas não farmacológicas aplicadas em conjunto: cabeceira 30–45°, higiene oral (preferencialmente com clorexidina), cuff inflado corretamente, circuito do ventilador sem condensação e higiene das mãos. A aplicação simultânea é mais eficaz do que cada medida isolada."},
-  {d:"Terapia Intensiva",dc:"cp",t:"Qual instrumento é utilizado para estratificar o risco de desenvolvimento de LPP em pacientes críticos?",o:["Escala de Glasgow (GCS) — avalia nível de consciência","Escala RASS — avalia nível de sedação e agitação","Escala de Braden — avalia risco específico de LPP","Índice de Barthel — avalia a independência funcional"],c:2,f:"A Escala de Braden avalia 6 subescalas: percepção sensorial, umidade, atividade, mobilidade, nutrição e fricção/cisalhamento. Pontuação menor = maior risco. É o instrumento validado mais utilizado em UTIs para estratificação de risco de LPP e direcionamento dos cuidados preventivos."},
-  {d:"Terapia Intensiva",dc:"cp",t:"Qual complicação neurológica tardia da HSA ocorre tipicamente entre o 4º e 14º dia, com pico no 9º dia, e é a principal causa de morte e incapacidade no pós-operatório?",o:["Ressangramento do aneurisma previamente clipado","Vasoespasmo cerebral com isquemia cerebral tardia (DCI)","Meningite bacteriana pós-operatória por contaminação cirúrgica","Hidrocefalia obstrutiva aguda por obstrução do aqueduto"],c:1,f:"O vasoespasmo cerebral ocorre entre o 4º–14º dia (pico no 9º dia) como resposta inflamatória ao sangue no espaço subaracnóideo. Pode evoluir para isquemia cerebral tardia (DCI), afetando ~30% dos pacientes. É a complicação mais temida do período pós-operatório da HSA aneurismática."},
-  {d:"Cirúrgica I",dc:"cg",t:"Qual é a definição correta de IRAS (Infecção Relacionada à Assistência à Saúde)?",o:["Qualquer infecção que o paciente apresenta ao ser admitido no pronto-socorro","Infecção adquirida durante ou após assistência em serviço de saúde, não presente na admissão","Infecção viral transmitida por gotículas entre pacientes da mesma enfermaria","Infecção que ocorre exclusivamente em pacientes com imunossupressão grave"],c:1,f:"IRAS é qualquer infecção adquirida durante a assistência à saúde que não estava presente nem em período de incubação na admissão. As principais em UTI são PAV, IPCS (cateter venoso central), ITU (cateter vesical) e ISC (sítio cirúrgico)."}
+const QS = [
+  {
+    // gabarito: A (c:0)
+    d:"Urgências Clínicas", dc:"cr",
+    t:"O paciente J.S.S. chegou ao pronto-socorro com dor de cabeça descrita como 'a pior dor de cabeça da vida', de início muito súbito. Como a equipe de enfermagem deve classificar essa situação?",
+    o:["Situação de urgência máxima — comunicar imediatamente ao enfermeiro e iniciar monitorização","Dor de cabeça comum — oferecer analgésico e orientar repouso","Possível enxaqueca — perguntar sobre episódios anteriores e aguardar avaliação médica","Ansiedade — orientar técnicas de relaxamento e reavaliar em 30 minutos"],
+    c:0,
+    f:"Uma dor de cabeça súbita e intensa assim é sinal de alerta para sangramento cerebral. O técnico de enfermagem deve tratar como emergência: comunicar ao enfermeiro imediatamente, iniciar monitorização e estar pronto para os primeiros cuidados."
+  },
+  {
+    // gabarito: C (c:2)
+    d:"Urgências Clínicas", dc:"cr",
+    t:"Na chegada ao hospital, J.S.S. estava com SpO₂ de 92%. Qual deve ser o primeiro cuidado da enfermagem?",
+    o:["Aguardar o resultado do exame de sangue antes de agir","Deixar o paciente deitado e verificar a pressão arterial","Oferecer oxigênio imediatamente para melhorar a saturação","Solicitar ao médico autorização antes de qualquer intervenção"],
+    c:2,
+    f:"Saturação de 92% significa que o paciente está com pouco oxigênio no sangue. Isso é perigoso para o cérebro já lesionado. O técnico deve oferecer oxigênio (cateter nasal ou máscara) imediatamente e comunicar o enfermeiro."
+  },
+  {
+    // gabarito: B (c:1)
+    d:"Urgências Clínicas", dc:"cr",
+    t:"J.S.S. estava com Glasgow de 10. O que esse valor nos informa sobre o estado do paciente?",
+    o:["O paciente está completamente acordado e se comunicando bem","O paciente tem consciência reduzida — responde, mas não está totalmente alerta","O paciente está em coma profundo e não responde a nenhum estímulo","O paciente está agitado e sem coordenação dos movimentos"],
+    c:1,
+    f:"A Escala de Glasgow vai de 3 (pior) a 15 (melhor). Glasgow 10 significa que o paciente está com a consciência rebaixada — pode abrir os olhos com estímulo, responde de alguma forma, mas não está completamente alerta. A equipe precisa acompanhar de perto qualquer mudança."
+  },
+  {
+    // gabarito: D (c:3)
+    d:"Urgências Clínicas", dc:"cr",
+    t:"Durante o cuidado ao paciente com suspeita de AVC hemorrágico, o técnico observa que o paciente passou a ter coração mais lento, pressão subindo e respiração irregular ao mesmo tempo. O que deve fazer?",
+    o:["Esperar para ver se melhora sozinho nos próximos minutos","Oferecer água e verificar novamente em 15 minutos","Reduzir a velocidade do soro e registrar no prontuário","Comunicar o enfermeiro imediatamente — esses sinais juntos indicam situação muito grave"],
+    c:3,
+    f:"Coração lento + pressão subindo + respiração irregular formam a Tríade de Cushing — um sinal de que a pressão dentro do crânio está muito alta e o paciente pode estar em perigo de vida. O técnico deve comunicar o enfermeiro imediatamente."
+  },
+  {
+    // gabarito: A (c:0)
+    d:"Urgências Clínicas", dc:"cr",
+    t:"Por que a cabeceira do leito de J.S.S. foi mantida elevada a 30 graus durante o tratamento?",
+    o:["Para ajudar a diminuir a pressão dentro do crânio e evitar que o conteúdo do estômago vá para os pulmões","Para facilitar a administração da dieta por sonda nasogástrica","Para melhorar a circulação nos membros inferiores","Para facilitar a realização de exames laboratoriais"],
+    c:0,
+    f:"A cabeceira a 30° ajuda o sangue a circular melhor saindo do crânio, reduzindo a pressão interna. Ao mesmo tempo, previne que o conteúdo do estômago vá para os pulmões (aspiração). É um cuidado simples e muito importante no AVC hemorrágico."
+  },
+  {
+    // gabarito: C (c:2)
+    d:"Cirúrgica I", dc:"cg",
+    t:"Antes da cirurgia de J.S.S., a equipe realizou o checklist de cirurgia segura da OMS. Qual é o objetivo principal desse checklist?",
+    o:["Calcular o tempo previsto da cirurgia","Organizar a agenda do bloco cirúrgico do dia","Evitar erros graves como operar o local errado ou esquecer materiais dentro do paciente","Verificar se os equipamentos do centro cirúrgico estão ligados"],
+    c:2,
+    f:"O checklist de cirurgia segura serve para prevenir erros que podem ser fatais: operar o paciente errado, no local errado ou deixar compressas e instrumentos dentro da cavidade operada. É aplicado em 3 momentos: antes da anestesia, antes de cortar e antes de sair da sala."
+  },
+  {
+    // gabarito: D (c:3)
+    d:"Cirúrgica I", dc:"cg",
+    t:"No momento do 'Time Out' (segunda etapa do checklist), qual é a conduta correta da equipe?",
+    o:["Somente o cirurgião verifica os documentos do paciente sozinho","O anestesista verifica os medicamentos e libera a incisão","O técnico de enfermagem confere os materiais esterilizados em silêncio","Toda a equipe para o que está fazendo e confirma em voz alta: paciente, cirurgia e local corretos"],
+    c:3,
+    f:"O Time Out é uma pausa de segurança antes da incisão onde TODA a equipe — cirurgião, anestesista e enfermagem — confirma em voz alta que está com o paciente certo, fazendo a cirurgia certa, no local certo. Qualquer pessoa da equipe pode (e deve) falar se perceber algo errado."
+  },
+  {
+    // gabarito: A (c:0)
+    d:"Cirúrgica I", dc:"cg",
+    t:"A cirurgia de J.S.S. durou aproximadamente 4 horas. Qual risco específico do posicionamento prolongado na mesa cirúrgica a enfermagem deve prevenir?",
+    o:["Lesão por Pressão nas proeminências ósseas pela posição prolongada","Hipoglicemia por tempo longo sem alimentação","Reação alérgica aos gases anestésicos","Desidratação por falta de hidratação endovenosa"],
+    c:0,
+    f:"Em cirurgias longas, o paciente fica horas na mesma posição sem poder se mexer. Isso comprime a pele sobre os ossos e pode causar lesão por pressão (escara). A enfermagem deve garantir que os pontos de pressão (calcanhares, sacro, cabeça) estejam bem protegidos e acolchoados."
+  },
+  {
+    // gabarito: C (c:2)
+    d:"Cirúrgica II", dc:"co",
+    t:"Após sair do CTI para a ala cirúrgica, J.S.S. estava consciente mas confuso e com fraqueza no lado direito. Qual é o principal risco de segurança nessa fase?",
+    o:["Infecção do sítio cirúrgico pela incisão no crânio","Desidratação por dificuldade em engolir líquidos","Queda — pela combinação de confusão mental e fraqueza no lado direito","Novo sangramento cerebral espontâneo sem causa"],
+    c:2,
+    f:"Paciente confuso + fraqueza no braço e perna direitos = risco muito alto de queda. Ele pode tentar levantar sem pedir ajuda ou não calcular bem o equilíbrio. A enfermagem deve: manter grades, cama baixa, campainha no alcance e orientar que peça ajuda para levantar."
+  },
+  {
+    // gabarito: D (c:3)
+    d:"Cirúrgica II", dc:"co",
+    t:"Na orientação de alta de J.S.S., qual aspecto relacionado ao seu histórico merece destaque especial pela equipe de enfermagem?",
+    o:["Orientar somente sobre a dieta para perda de peso","Explicar em detalhes como foi o procedimento cirúrgico","Recomendar repouso total por pelo menos 6 meses","Reforçar a importância de tomar os remédios corretamente todo dia"],
+    c:3,
+    f:"O texto diz que o paciente 'fazia uso irregular de medicações'. Isso significa que ele não tomava os remédios para pressão, diabetes e colesterol direito — e isso contribuiu para o AVC. Reforçar a adesão ao tratamento é o ponto mais importante da orientação de alta nesse caso."
+  },
+  {
+    // gabarito: B (c:1)
+    d:"Terapia Intensiva", dc:"cp",
+    t:"No CTI, J.S.S. estava com ventilação mecânica (respirador). Por que a higiene oral é um cuidado tão importante para pacientes intubados?",
+    o:["Para facilitar a leitura do oxímetro posicionado no rosto","Para evitar que bactérias da boca desçam para os pulmões e causem pneumonia","Para deixar o hálito do paciente agradável durante a internação","Para evitar que o tubo de respiração se mova de posição"],
+    c:1,
+    f:"Paciente intubado não consegue cuspir ou limpar a boca sozinho. Bactérias acumuladas na boca podem descer pelo tubo e causar pneumonia — chamada PAV (Pneumonia Associada à Ventilação). A higiene oral é uma das principais medidas de prevenção dessa infecção."
+  },
+  {
+    // gabarito: C (c:2)
+    d:"Terapia Intensiva", dc:"cp",
+    t:"Para avaliar o risco de lesão por pressão (escara) de um paciente no CTI, qual ferramenta a enfermagem utiliza?",
+    o:["Escala de Glasgow, que mede o nível de consciência","Escala RASS, que avalia o nível de sedação","Escala de Braden, que avalia o risco específico de lesão por pressão","Escala de Barthel, que avalia a independência do paciente"],
+    c:2,
+    f:"A Escala de Braden avalia itens como: o paciente consegue se mover? A pele está úmida? Ele está bem nutrido? Quanto menor a pontuação, maior o risco de desenvolver escara. Com base nisso, a enfermagem define a frequência da mudança de decúbito e outras medidas preventivas."
+  },
+  {
+    // gabarito: A (c:0)
+    d:"Terapia Intensiva", dc:"cp",
+    t:"J.S.S. ficou parado no leito por muitos dias. Por que a profilaxia de trombose venosa profunda (TVP) é importante nesse caso?",
+    o:["Porque a imobilidade dificulta a circulação e pode formar coágulos nas veias das pernas","Porque a sedação usada no CTI aumenta a pressão diretamente nas veias","Porque a TVP é causada diretamente pelo tipo de aneurisma que ele tinha","Porque o respirador mecânico comprime os vasos sanguíneos dos membros"],
+    c:0,
+    f:"Quando o paciente fica muito tempo parado, o sangue circula mais devagar nas veias das pernas e pode formar um coágulo — a TVP. Se esse coágulo se soltar, pode ir para o pulmão (embolia pulmonar), o que é gravíssimo. Meias compressivas e mobilização passiva dos membros ajudam a prevenir."
+  },
+  {
+    // gabarito: D (c:3)
+    d:"Terapia Intensiva", dc:"cp",
+    t:"Qual das seguintes ações é considerada a medida mais básica e eficaz para prevenir infecções em qualquer ambiente hospitalar, especialmente no CTI?",
+    o:["Administrar antibiótico profilático para todos os pacientes do CTI","Trocar o uniforme entre um paciente e outro","Usar avental e máscara em todos os atendimentos sem exceção","Lavar corretamente as mãos antes e depois de cada contato com o paciente"],
+    c:3,
+    f:"A higiene das mãos é a medida número 1 de prevenção de infecções hospitalares. A maioria das infecções no hospital é transmitida pelas mãos dos profissionais de saúde. Lavar as mãos corretamente (com água e sabão ou álcool gel) antes e depois de cada contato com o paciente é simples, grátis e salva vidas."
+  }
 ];
 
-let cur=0,score=0,answered=false;
+let cur=0, score=0, answered=false;
 
 function build(){
   const c=document.getElementById('qc');
@@ -560,7 +658,20 @@ function build(){
     const d=document.createElement('div');
     d.className='qcard'+(i===0?' active':'');
     d.id='q'+i;
-    d.innerHTML=`<div class="qm"><span class="qn">Questão ${i+1} de ${QS.length}</span><span class="chip ${q.dc}">${q.d}</span></div><div class="qt">${q.t}</div><div class="opts">${q.o.map((o,j)=>`<button class="opt" onclick="pick(${i},${j})" id="o${i}_${j}"><span class="ol">${L[j]}</span><span>${o}</span></button>`).join('')}</div><div class="fb" id="f${i}"></div>`;
+    d.innerHTML=`
+      <div class="qm">
+        <span class="qn">Questão ${i+1} de ${QS.length}</span>
+        <span class="chip ${q.dc}">${q.d}</span>
+      </div>
+      <div class="qt">${q.t}</div>
+      <div class="opts">
+        ${q.o.map((o,j)=>`
+          <button class="opt" onclick="pick(${i},${j})" id="o${i}_${j}">
+            <span class="ol">${L[j]}</span>
+            <span>${o}</span>
+          </button>`).join('')}
+      </div>
+      <div class="fb" id="f${i}"></div>`;
     c.appendChild(d);
   });
   setP();
@@ -572,8 +683,8 @@ function pick(qi,oi){
   const q=QS[qi];
   document.querySelectorAll(`#q${qi} .opt`).forEach(o=>o.disabled=true);
   document.getElementById(`o${qi}_${oi}`).classList.add(oi===q.c?'correct':'wrong');
-  if(oi!==q.c)document.getElementById(`o${qi}_${q.c}`).classList.add('correct');
-  if(oi===q.c)score++;
+  if(oi!==q.c) document.getElementById(`o${qi}_${q.c}`).classList.add('correct');
+  if(oi===q.c) score++;
   const fb=document.getElementById('f'+qi);
   fb.className='fb show '+(oi===q.c?'fbc':'fbw');
   fb.innerHTML=`<span class="fi2">${oi===q.c?'✅':'❌'}</span><span>${q.f}</span>`;
@@ -581,7 +692,7 @@ function pick(qi,oi){
 }
 
 function nextQ(){
-  cur++;answered=false;
+  cur++; answered=false;
   document.getElementById('btn').disabled=true;
   if(cur>=QS.length){showScore();return;}
   document.querySelectorAll('.qcard').forEach(c=>c.classList.remove('active'));
@@ -590,7 +701,7 @@ function nextQ(){
   setP();
 }
 
-function setP(){document.getElementById('pf').style.width=(cur/QS.length*100)+'%';}
+function setP(){ document.getElementById('pf').style.width=(cur/QS.length*100)+'%'; }
 
 function showScore(){
   document.getElementById('qc').style.display='none';
@@ -601,18 +712,19 @@ function showScore(){
   const pct=Math.round(score/QS.length*100);
   document.getElementById('sbig').textContent=score;
   document.getElementById('stot').textContent='/'+QS.length;
-  const t=pct>=80?'🏆 Excelente!':pct>=60?'📚 Bom resultado!':'💪 Continue estudando!';
-  document.getElementById('stitle').textContent=t;
-  document.getElementById('ssub').textContent=`Você acertou ${pct}% das questões. ${pct>=80?'Você está bem preparado.':'Revise as abas de conteúdo.'}`;
+  const titles=['💪 Continue estudando!','📚 Bom resultado!','🏆 Excelente!'];
+  const ti=pct>=80?2:pct>=60?1:0;
+  document.getElementById('stitle').textContent=titles[ti];
+  document.getElementById('ssub').textContent=`Você acertou ${pct}% das questões. ${pct>=80?'Você está bem preparado para a prova!':pct>=60?'Revise os pontos errados nas abas de conteúdo.':'Volte às abas e releia o material antes de tentar novamente.'}`;
+  const colors=['var(--red)','var(--orange)','var(--green)'];
+  const bgs=['var(--red-light)','var(--orange-light)','var(--green-light)'];
   const sc=document.getElementById('scirc');
-  const c=pct>=80?'var(--green)':pct>=60?'var(--orange)':'var(--red)';
-  const bg=pct>=80?'var(--green-light)':pct>=60?'var(--orange-light)':'var(--red-light)';
-  sc.style.borderColor=c; sc.style.background=bg;
-  document.getElementById('sbig').style.color=c;
+  sc.style.borderColor=colors[ti]; sc.style.background=bgs[ti];
+  document.getElementById('sbig').style.color=colors[ti];
 }
 
 function restart(){
-  cur=0;score=0;answered=false;
+  cur=0; score=0; answered=false;
   document.getElementById('qc').style.display='block';
   document.getElementById('qfoot').style.display='flex';
   document.getElementById('sp').classList.remove('show');
