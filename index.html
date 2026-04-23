@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estudo de Caso MUC - Exercício Integrado</title>
+<title>Estudo de Caso MUC</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -188,6 +188,13 @@
   .ssub { font-size:13px; color:var(--text2); margin-bottom:20px; }
   .btn-r { background:var(--blue); color:#fff; border:none; border-radius:4px; padding:0 24px; height:40px; font-family:'Roboto',sans-serif; font-size:14px; font-weight:500; cursor:pointer; }
   .btn-r:hover { background:#1557b0; }
+
+  /* SECTION BANNER */
+  .sec-banner { display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-bottom:16px; }
+  .sec-banner-ico { font-size:22px; flex-shrink:0; }
+  .sec-banner-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.09em; color:var(--text2); line-height:1.2; }
+  .sec-banner-name { font-size:17px; font-weight:500; color:var(--text); line-height:1.25; margin-top:1px; }
+  .sec-banner-bar { width:3px; border-radius:2px; align-self:stretch; flex-shrink:0; }
 </style>
 </head>
 <body>
@@ -200,7 +207,7 @@
   <div class="drawer-header">
     <div class="hico">📋</div>
     <div class="drawer-header-text">
-      <div class="htitle">Estudo de Caso MUC - Exercício Integrado</div>
+      <div class="htitle">Estudo de Caso MUC</div>
       <div class="hsub">Santa Casa BH</div>
     </div>
   </div>
@@ -220,8 +227,8 @@
 <header>
   <div class="hico">📋</div>
   <div class="header-text">
-    <div class="htitle">Estudo de Caso MUC - Exercício Integrad</div>
-    <div class="hsub">Escola Técnica Santa Casa BH</div>
+    <div class="htitle">Estudo de Caso MUC</div>
+    <div class="hsub" id="headerSub">Resumo do Caso</div>
   </div>
   <button class="ham-btn" id="hamBtn" onclick="toggleDrawer()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -232,6 +239,11 @@
 
 <!-- ===== RESUMO ===== -->
 <div id="resumo" class="panel active">
+  <div class="sec-banner">
+    <div class="sec-banner-bar" style="background:var(--blue)"></div>
+    <div class="sec-banner-ico">📄</div>
+    <div><div class="sec-banner-label">Seção atual</div><div class="sec-banner-name">Resumo do Caso</div></div>
+  </div>
 
   <div class="sh">O que aconteceu — linha do tempo simples</div>
   <div class="card">
@@ -289,73 +301,203 @@
 
 <!-- ===== URGÊNCIAS ===== -->
 <div id="urgencia" class="panel">
+  <div class="sec-banner">
+    <div class="sec-banner-bar" style="background:var(--red)"></div>
+    <div class="sec-banner-ico">🚨</div>
+    <div><div class="sec-banner-label">Seção atual</div><div class="sec-banner-name">Urgências Clínicas</div></div>
+  </div>
 
+  <!-- NEUROANATOMIA BÁSICA -->
+  <div class="sh">Base — Sistema Nervoso Central (o que é atingido no caso de J.S.S.)</div>
+  <div class="card">
+    <div class="ctitle">🧠 SNC — estruturas que importam para este caso</div>
+    <p style="font-size:13px;margin-bottom:10px">O SNC é composto pelo <strong>encéfalo</strong> (cérebro, cerebelo e tronco encefálico) e pela <strong>medula espinhal</strong>. No caso de J.S.S., o sangramento aconteceu nos vasos que irrigam o encéfalo, causando a hemorragia subaracnóidea.</p>
+    <div class="two-col">
+      <div class="mc">
+        <h4>Partes do encéfalo</h4>
+        <ul>
+          <li><strong>Cérebro:</strong> pensamento, movimento, linguagem, sensações</li>
+          <li><strong>Cerebelo:</strong> equilíbrio e coordenação motora</li>
+          <li><strong>Tronco encefálico:</strong> controla respiração, frequência cardíaca e consciência</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Por que J.S.S. ficou com fraqueza à direita?</h4>
+        <p>O cérebro funciona de forma cruzada: o hemisfério esquerdo controla o lado direito do corpo. O sangramento afetou essa região, causando a fraqueza (hemiparesia) à direita — déficit motor que persistiu ao longo da internação.</p>
+      </div>
+    </div>
+    <div class="ib ib-b" style="margin-top:10px">
+      <span class="ii">💡</span>
+      <div><div class="il">Neurônio — por que importa saber</div><div class="it">O neurônio é a célula nervosa. Quando o sangramento comprime ou lesiona neurônios, eles podem morrer — e neurônios adultos <strong>não se regeneram</strong>. Por isso cada minuto conta no AVC. Quanto mais rápido o tratamento, menor o dano permanente.</div></div>
+    </div>
+  </div>
+
+  <!-- DISTÚRBIOS NEUROLÓGICOS DO CONTEÚDO DA MATÉRIA -->
+  <div class="sh">Distúrbios neurológicos da Unidade II — o que caiu no caso</div>
+  <div class="card">
+    <div class="ctitle">📋 Sequência dos eventos neurológicos de J.S.S.</div>
+    <table>
+      <thead><tr><th>Condição</th><th>O que é</th><th>No caso de J.S.S.</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Aneurisma Cerebral</strong></td>
+          <td>Bolsa ou dilatação fraca na parede de uma artéria cerebral. Pode romper a qualquer momento.</td>
+          <td>Era o problema de base — o aneurisma existia antes do evento agudo</td>
+        </tr>
+        <tr>
+          <td><strong>Hemorragia Subaracnóidea (HSA)</strong></td>
+          <td>Sangramento que ocorre no espaço entre o cérebro e as membranas que o cobrem (espaço subaracnóideo), geralmente causado pelo rompimento de um aneurisma</td>
+          <td>Diagnosticada pela tomografia de crânio — motivo da cirurgia de emergência</td>
+        </tr>
+        <tr>
+          <td><strong>Doença Encéfalo-Vascular (DEV)</strong></td>
+          <td>Qualquer alteração do fluxo sanguíneo cerebral — inclui o AVC hemorrágico e isquêmico</td>
+          <td>J.S.S. teve um AVC hemorrágico, que é uma forma de DEV</td>
+        </tr>
+        <tr>
+          <td><strong>Hipertensão Intracraniana (HIC)</strong></td>
+          <td>Aumento da pressão dentro do crânio, que pode comprimir o cérebro e piorar o dano neurológico</td>
+          <td>Risco durante toda a internação no CTI — equipe monitorava sinais de PIC elevada</td>
+        </tr>
+        <tr>
+          <td><strong>Vasoespasmo</strong></td>
+          <td>Contração dos vasos sanguíneos cerebrais após hemorragia subaracnóidea. Pode causar isquemia (falta de sangue) e piorar o dano cerebral nos dias seguintes ao sangramento</td>
+          <td>Complicação monitorada durante toda a permanência no CTI — um dos agravos observados pela equipe</td>
+        </tr>
+        <tr>
+          <td><strong>Alteração do nível de consciência / Coma</strong></td>
+          <td>Rebaixamento progressivo da consciência até o estado de coma (ausência de resposta)</td>
+          <td>Glasgow 10 na admissão; Glasgow 6 após a cirurgia — estado de coma, precisou de intubação</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AVC - DESTAQUE -->
   <div class="sh">O que é AVC hemorrágico?</div>
   <div class="card">
     <div class="ctitle">🧠 Entendendo o diagnóstico — linguagem simples</div>
     <p style="font-size:13px">Um vaso sanguíneo dentro do crânio se rompeu — neste caso, um <strong>aneurisma</strong> (uma bolsa fraca na parede do vaso). O sangue vazou para dentro do crânio, aumentando a pressão e lesionando o cérebro. Isso é o AVC hemorrágico.</p>
     <div class="ib ib-r" style="margin-top:10px">
       <span class="ii">🔴</span>
-      <div><div class="il">Sinal que a prova pode cobrar</div><div class="it">A dor de cabeça descrita como <strong>"a pior dor de cabeça da vida"</strong>, de início muito súbito, é o sinal clássico desse tipo de sangramento cerebral. Qualquer paciente que descreva isso deve ser considerado urgência máxima.</div></div>
+      <div><div class="il">Sinal que a prova vai cobrar</div><div class="it">A dor de cabeça descrita como <strong>"a pior dor de cabeça da vida"</strong>, de início muito súbito, é o sinal clássico da hemorragia subaracnóidea por ruptura de aneurisma. Qualquer paciente que descreva isso deve ser considerado urgência máxima.</div></div>
     </div>
-    <div class="two-col">
+    <div class="two-col" style="margin-top:10px">
       <div class="mc">
-        <h4>Sinais e sintomas do caso</h4>
+        <h4>Sinais e sintomas presentes em J.S.S.</h4>
         <ul>
-          <li>Dor de cabeça intensa e súbita</li>
+          <li>Cefaleia intensa e súbita ("a pior da vida")</li>
           <li>Náuseas e vômitos</li>
-          <li>Confusão mental</li>
+          <li>Rebaixamento do nível de consciência</li>
           <li>Fraqueza no lado direito do corpo</li>
-          <li>Pressão alta, coração acelerado</li>
+          <li>Pressão alta (190×110 mmHg)</li>
+          <li>Taquicardia (FC 110 bpm)</li>
+          <li>SpO₂ 92% — oxigenação comprometida</li>
         </ul>
       </div>
       <div class="mc">
-        <h4>Por que a fraqueza é à direita?</h4>
-        <p>O lado esquerdo do cérebro controla o lado direito do corpo. Quando o sangramento acontece no hemisfério esquerdo, o paciente fica com o lado direito fraco.</p>
-        <p style="margin-top:4px;font-size:12px;color:var(--text2)">Isso é suficiente saber no técnico — sem precisar decorar nomes de vias nervosas.</p>
+        <h4>AIT — o que é e diferença para o AVC</h4>
+        <p>O <strong>Ataque Isquêmico Transitório (AIT)</strong> produz sintomas parecidos com o AVC (fraqueza, confusão, dificuldade para falar) mas <em>que desaparecem em menos de 24 horas</em>. É um sinal de alerta: muitos pacientes têm um AVC completo após o AIT. No caso de J.S.S., o quadro não foi transitório — foi um AVC hemorrágico real.</p>
       </div>
     </div>
   </div>
 
-  <div class="sh">O que a equipe de enfermagem fez na urgência</div>
+  <!-- ESCALA DE GLASGOW DETALHADA -->
+  <div class="sh">Escala de Coma de Glasgow — fundamental para este caso</div>
   <div class="card">
+    <div class="ctitle">📊 Como funciona a Escala de Glasgow (ECG)</div>
+    <p style="font-size:13px;margin-bottom:10px">A ECG avalia o nível de consciência do paciente em 3 domínios. A pontuação final vai de <strong>3 (mínimo)</strong> a <strong>15 (máximo)</strong>.</p>
     <table>
-      <thead><tr><th>Cuidado realizado</th><th>Por que foi feito</th></tr></thead>
+      <thead><tr><th>Domínio</th><th>Resposta</th><th>Pontos</th></tr></thead>
       <tbody>
-        <tr><td><strong>Colocou oxigênio</strong></td><td>SpO₂ estava 92% — oxigênio abaixo do normal prejudica o cérebro</td></tr>
-        <tr><td><strong>Puncionou acesso venoso</strong></td><td>Precisa ser uma veia calibrosa (grossa) para passar medicação e soro rápido</td></tr>
-        <tr><td><strong>Monitorização contínua</strong></td><td>Monitor cardíaco, oxímetro e pressão de hora em hora para ver como o paciente evolui</td></tr>
-        <tr><td><strong>Coletou sangue para exames</strong></td><td>Ver como estão glicemia, sangue, coagulação, entre outros</td></tr>
-        <tr><td><strong>Controlou a pressão com remédio</strong></td><td>Pressão 190×110 é perigosa — pode piorar o sangramento</td></tr>
-        <tr><td><strong>Controlou a glicemia</strong></td><td>Glicemia 280 mg/dL é muito alta — açúcar descontrolado piora a lesão cerebral</td></tr>
-        <tr><td><strong>Acompanhou até a TC</strong></td><td>A tomografia confirma o sangramento no cérebro — exame de urgência</td></tr>
+        <tr><td rowspan="4"><strong>Abertura Ocular (AO)</strong></td><td>Espontânea</td><td>4</td></tr>
+        <tr><td>Ao estímulo verbal (comando)</td><td>3</td></tr>
+        <tr><td>À dor</td><td>2</td></tr>
+        <tr><td>Ausente</td><td>1</td></tr>
+        <tr><td rowspan="5"><strong>Resposta Verbal (RV)</strong></td><td>Orientado</td><td>5</td></tr>
+        <tr><td>Confuso</td><td>4</td></tr>
+        <tr><td>Palavras inapropriadas</td><td>3</td></tr>
+        <tr><td>Sons incompreensíveis</td><td>2</td></tr>
+        <tr><td>Ausente</td><td>1</td></tr>
+        <tr><td rowspan="6"><strong>Resposta Motora (RM)</strong></td><td>Obedece comandos</td><td>6</td></tr>
+        <tr><td>Localiza dor</td><td>5</td></tr>
+        <tr><td>Retirada à dor</td><td>4</td></tr>
+        <tr><td>Flexão anormal (decorticação)</td><td>3</td></tr>
+        <tr><td>Extensão anormal (descerebração)</td><td>2</td></tr>
+        <tr><td>Ausente</td><td>1</td></tr>
       </tbody>
     </table>
-    <div class="ib ib-b" style="margin-top:10px">
-      <span class="ii">💡</span>
-      <div><div class="il">Detalhe importante</div><div class="it">O paciente foi posicionado com a <strong>cabeceira elevada</strong> (e não deitado plano). Isso ajuda a diminuir a pressão dentro do crânio. É um cuidado simples que faz diferença.</div></div>
+    <div class="two-col" style="margin-top:10px">
+      <div class="mc">
+        <h4>J.S.S. — Glasgow 10 na admissão</h4>
+        <p>Consciência reduzida, mas ainda responsivo a estímulos. Ainda não precisava de intubação nesse momento. A equipe precisava monitorar de perto para detectar qualquer queda.</p>
+      </div>
+      <div class="mc">
+        <h4>J.S.S. — Glasgow 6 no CTI (pós-op)</h4>
+        <p>Estado gravíssimo — próximo ao coma profundo. Nesse nível, o paciente <strong>não protege a via aérea</strong>, por isso precisou de ventilação mecânica. GCS ≤ 8 geralmente indica necessidade de intubação.</p>
+      </div>
+    </div>
+    <div class="ib ib-o" style="margin-top:10px">
+      <span class="ii">⚠️</span>
+      <div><div class="il">Interpretação da ECG — referência rápida</div><div class="it"><strong>15:</strong> consciente e orientado · <strong>13–14:</strong> confusão leve · <strong>9–12:</strong> rebaixamento moderado · <strong>≤ 8:</strong> grave, risco de perder via aérea · <strong>3:</strong> coma profundo / morte encefálica (dependendo do quadro).</div></div>
     </div>
   </div>
 
+  <!-- HIPERTENSÃO INTRACRANIANA E PIC -->
+  <div class="sh">Hipertensão Intracraniana (HIC) — monitorada no CTI</div>
+  <div class="card">
+    <div class="ctitle">🧠 O que é a PIC e por que foi monitorada em J.S.S.</div>
+    <p style="font-size:13px;margin-bottom:10px">O crânio é uma caixa fechada. Dentro dela há <strong>cérebro + sangue + líquor</strong>. Quando o sangramento do aneurisma adicionou mais sangue dentro do crânio, a pressão intracraniana (PIC) subiu — comprimindo o cérebro. A equipe precisava detectar isso o mais cedo possível.</p>
+    <div class="ib ib-r">
+      <span class="ii">🚨</span>
+      <div><div class="il">Tríade de Cushing — sinal de HIC grave</div><div class="it">Quando a PIC sobe demais, o organismo reage com três sinais juntos:<br><strong>1. Bradicardia</strong> (coração lento) &nbsp;+&nbsp; <strong>2. Hipertensão arterial</strong> (pressão subindo) &nbsp;+&nbsp; <strong>3. Bradipneia / respiração irregular</strong><br>Esses três sinais juntos exigem comunicação imediata ao enfermeiro.</div></div>
+    </div>
+    <div class="ib ib-b" style="margin-top:0">
+      <span class="ii">💡</span>
+      <div><div class="il">Cuidados de enfermagem para reduzir a PIC</div><div class="it">Cabeceira a 30° · Manter cabeça alinhada (sem rotação ou flexão) · Evitar estímulos desnecessários · Controlar dor (dor aumenta a PIC) · Controle rigoroso da pressão arterial · Monitorar balanço hídrico.</div></div>
+    </div>
+  </div>
+
+  <!-- CUIDADOS DE ENFERMAGEM NA URGÊNCIA -->
+  <div class="sh">Atendimento de urgência — o que aconteceu no pronto-atendimento</div>
+  <div class="card">
+    <p style="font-size:13px;margin-bottom:10px">Esta seção trata do <strong>reconhecimento e atendimento inicial</strong> do AVC hemorrágico na urgência — antes da cirurgia e antes do CTI. Os cuidados pós-cirúrgicos e de UTI estão nas abas específicas.</p>
+    <table>
+      <thead><tr><th>Cuidado imediato na urgência</th><th>Por que foi feito — raciocínio clínico</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reconhecimento da emergência neurológica</strong></td><td>Cefaleia súbita máxima ("a pior da vida") + rebaixamento de consciência = protocolo AVC ativado imediatamente. Cada minuto conta.</td></tr>
+        <tr><td><strong>Oxigenoterapia</strong></td><td>SpO₂ 92% compromete o cérebro já lesionado. Meta: SpO₂ ≥ 94%. O oxímetro de pulso na urgência guiou essa decisão.</td></tr>
+        <tr><td><strong>Acesso venoso calibroso</strong></td><td>Veia de grande calibre permite infundir medicações e soros rapidamente — indispensável em qualquer emergência.</td></tr>
+        <tr><td><strong>Monitorização não invasiva contínua</strong></td><td>Monitor cardíaco (FC e ritmo), oxímetro de pulso (SpO₂) e PA seriada — tríade básica de vigilância na urgência.</td></tr>
+        <tr><td><strong>Controle pressórico imediato</strong></td><td>PA 190×110 mmHg: pressão alta demais aumenta o risco de o aneurisma sangrar de novo antes da cirurgia. Medicação prescrita pelo médico.</td></tr>
+        <tr><td><strong>Controle glicêmico</strong></td><td>Glicemia 280 mg/dL: hiperglicemia piora a lesão neurológica. Monitorada pelo glicosímetro e corrigida conforme prescrição.</td></tr>
+        <tr><td><strong>Tomografia de crânio — urgência</strong></td><td>Exame que confirmou o diagnóstico (HSA + aneurisma) e viabilizou a transferência para neurocirurgia.</td></tr>
+        <tr><td><strong>Cabeceira a 30° desde a urgência</strong></td><td>Medida simples que já reduz PIC e previne aspiração — deve ser adotada desde o primeiro contato, não só no CTI.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SINAIS DE PIORA -->
   <div class="sh">Sinais de piora que a enfermagem deve comunicar</div>
   <div class="card">
     <div class="ib ib-r">
       <span class="ii">🚨</span>
-      <div><div class="il">Sempre comunicar ao enfermeiro se o paciente apresentar</div>
+      <div><div class="il">Comunicar ao enfermeiro imediatamente se o paciente apresentar</div>
       <div class="it">
         <ul style="padding-left:16px;margin-top:4px">
-          <li>Piora da confusão mental ou não acorda quando chamado</li>
-          <li>Coração ficando mais lento junto com pressão subindo (sinal de perigo)</li>
-          <li>Respiração irregular ou pausa para respirar</li>
+          <li>Queda do nível de consciência ou piora do Glasgow</li>
+          <li>Bradicardia + pressão subindo + respiração irregular ao mesmo tempo (Tríade de Cushing)</li>
           <li>Queda da saturação de oxigênio</li>
-          <li>Convulsão</li>
-          <li>Saída de sangue pelo nariz, ouvido ou curativo</li>
+          <li>Convulsão ou movimentos anormais</li>
+          <li>Dilatação de uma ou ambas as pupilas (sinal de herniação cerebral)</li>
+          <li>Saída de sangue pelo curativo, nariz ou ouvido</li>
+          <li>Agitação súbita (pode indicar hipóxia ou PIC elevada)</li>
         </ul>
       </div></div>
     </div>
-    <div class="ib ib-o" style="margin-top:0">
-      <span class="ii">⚠️</span>
-      <div><div class="il">Tríade de Cushing — sinal de alerta máximo</div><div class="it">Se o técnico observar <strong>coração lento + pressão subindo + respiração estranha</strong> ao mesmo tempo, deve comunicar o enfermeiro imediatamente. São sinais de que a pressão dentro do crânio está muito alta.</div></div>
+    <div class="ib ib-p" style="margin-top:0">
+      <span class="ii">🧠</span>
+      <div><div class="il">Morte Encefálica — contexto da Unidade II</div><div class="it">Quando a PIC supera a pressão de perfusão cerebral por tempo prolongado, pode haver morte encefálica. É diagnosticada por critérios clínicos e exames específicos — relevante porque pacientes graves no CTI podem evoluir para essa condição. J.S.S. não chegou a isso, mas é parte do conteúdo da matéria.</div></div>
     </div>
   </div>
 
@@ -363,6 +505,11 @@
 
 <!-- ===== CIRÚRGICA ===== -->
 <div id="cirurgica" class="panel">
+  <div class="sec-banner">
+    <div class="sec-banner-bar" style="background:var(--green)"></div>
+    <div class="sec-banner-ico">🔪</div>
+    <div><div class="sec-banner-label">Seção atual</div><div class="sec-banner-name">Cirúrgica I e II</div></div>
+  </div>
 
   <!-- ======= CIRÚRGICA I — CIRURGIAS NEUROLÓGICAS ======= -->
   <div class="sh">Cirúrgica I — Cirurgias Neurológicas</div>
@@ -374,7 +521,7 @@
   <div class="sh">Aneurisma cerebral — o que é e por que J.S.S. foi operado</div>
   <div class="card">
     <div class="ctitle">🔴 O que é um aneurisma cerebral?</div>
-    <p style="font-size:13px">É um ponto fraco na parede de um vaso sanguíneo do cérebro que forma uma bolsa (protuberância). Essa bolsa tem alto risco de romper. Quando rompe, sangra dentro do crânio — causando a hemorragia subaracnóidea que J.S.S. teve.</p>
+    <p style="font-size:13px">É uma dilatação anormal e enfraquecida de uma artéria no cérebro — forma uma bolsa (protuberância) na parede do vaso. Essa bolsa tem alto risco de romper. Quando rompe, sangra dentro do crânio, causando a <strong>hemorragia subaracnóidea</strong> que J.S.S. teve.</p>
     <div class="two-col" style="margin-top:10px">
       <div class="mc">
         <h4>Sinais do aneurisma rompido (J.S.S.)</h4>
@@ -387,14 +534,79 @@
         </ul>
       </div>
       <div class="mc">
-        <h4>Quando opera?</h4>
+        <h4>Fatores de risco para aneurisma — presentes em J.S.S.</h4>
         <ul>
-          <li>Quando o aneurisma já rompeu (como no caso)</li>
-          <li>Quando tem alto risco de ruptura</li>
-          <li>Aneurismas iguais ou maiores que 5mm geralmente têm indicação cirúrgica</li>
+          <li><strong>Hipertensão arterial</strong> — principal fator de risco</li>
+          <li>Dislipidemia (aterosclerose)</li>
+          <li>Diabetes mellitus tipo 2</li>
+          <li>Obesidade grau III</li>
+          <li>Sedentarismo e não adesão ao tratamento</li>
         </ul>
-        <p style="margin-top:6px;font-size:12px;color:var(--text2)">A cirurgia de J.S.S. foi de emergência — sem esperar.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="sh">Tipos de aneurismas cerebrais</div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Tipo</th><th>Descrição</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Sacular</strong> (em baga)</td>
+          <td>Mais comum. Forma uma bolsa arredondada na parede do vaso, parecida com um balão ou saco. Localiza-se geralmente nas bifurcações das artérias.</td>
+          <td>É o tipo mais associado à HSA. Muito provavelmente o tipo de J.S.S.</td>
+        </tr>
+        <tr>
+          <td><strong>Fusiforme</strong></td>
+          <td>Dilatação mais uniforme de todo o vaso sanguíneo, sem formação de uma bolsa localizada. O vaso inteiro se alarga.</td>
+          <td>Menos comum; mais difícil de tratar com clipagem convencional</td>
+        </tr>
+        <tr>
+          <td><strong>Dissecante</strong></td>
+          <td>Ocorre por um rasgamento na camada interna (íntima) da artéria. O sangue entra entre as camadas da parede arterial.</td>
+          <td>Pode causar isquemia ou hemorragia; pode estar associado a trauma</td>
+        </tr>
+        <tr>
+          <td><strong>Gigante</strong></td>
+          <td>Aneurisma com mais de 25 mm de diâmetro. É raro, mas de alta gravidade.</td>
+          <td>Pode se comportar como tumor (comprimir estruturas vizinhas) além do risco de ruptura</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sh">Tratamentos cirúrgicos e endovasculares</div>
+  <div class="card">
+    <div class="ctitle">✂️ Tratamento Cirúrgico — J.S.S. foi submetido a clipagem</div>
+    <div class="three-col" style="margin-bottom:12px">
+      <div class="sc">
+        <div class="sn" style="background:var(--red)">1</div>
+        <h4 style="color:var(--red)">Clipagem</h4>
+        <p>Fechamento do colo do aneurisma com um clipe de metal na base — interrompe o fluxo para a bolsa. <strong>Foi o que fizeram em J.S.S.</strong> via craniotomia.</p>
+      </div>
+      <div class="sc">
+        <div class="sn" style="background:var(--orange)">2</div>
+        <h4 style="color:var(--orange)">Bypass</h4>
+        <p>Desvio do fluxo sanguíneo ao redor do aneurisma usando uma derivação (enxerto). Usado quando a clipagem direta não é possível.</p>
+      </div>
+      <div class="sc">
+        <div class="sn" style="background:var(--purple)">3</div>
+        <h4 style="color:var(--purple)">Excisão</h4>
+        <p>Remoção cirúrgica completa do aneurisma com reconstrução da artéria. Reservada a casos selecionados.</p>
+      </div>
+    </div>
+    <div class="ctitle">🩺 Tratamento Endovascular — alternativas sem abrir o crânio</div>
+    <table>
+      <thead><tr><th>Técnica</th><th>Como funciona</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Embolização com coils</strong></td><td>Introdução de molas (coils) metálicos dentro do aneurisma via cateter pela virilha. Os coils trombosam o interior da bolsa, impedindo o fluxo sanguíneo.</td></tr>
+        <tr><td><strong>Stenting</strong></td><td>Inserção de uma estrutura tubular (stent) na artéria para reforçar a parede e servir como suporte para os coils.</td></tr>
+        <tr><td><strong>Flow Diverters</strong></td><td>Dispositivo implantado na artéria principal que redireciona o fluxo sanguíneo para longe do aneurisma, induzindo trombose gradual da bolsa e cura da artéria.</td></tr>
+      </tbody>
+    </table>
+    <div class="ib ib-b" style="margin-top:10px">
+      <span class="ii">💡</span>
+      <div><div class="il">Por que J.S.S. foi operado cirurgicamente e não por via endovascular?</div><div class="it">Em situações de emergência com hemorragia subaracnóidea ativa, a <strong>clipagem cirúrgica</strong> permite tratar o aneurisma e remover o sangue do espaço subaracnóideo ao mesmo tempo. A escolha entre cirurgia aberta e endovascular depende do tipo, localização e tamanho do aneurisma, além das condições clínicas do paciente.</div></div>
     </div>
   </div>
 
@@ -436,43 +648,22 @@
     </div>
   </div>
 
-  <div class="sh">Outros tipos de cirurgias neurológicas — contexto da matéria</div>
+  <div class="sh">Cuidados gerais de enfermagem em qualquer cirurgia neurológica</div>
   <div class="card">
-    <div class="ctitle">📋 Cirurgias abordadas na Cirúrgica I</div>
-    <table>
-      <thead><tr><th>Tipo de cirurgia</th><th>O que é</th><th>Cuidados específicos da enfermagem</th></tr></thead>
+    <div class="ib ib-b">
+      <span class="ii">💡</span>
+      <div><div class="il">Cuidados válidos para toda cirurgia neurológica — incluindo o caso de J.S.S.</div><div class="it">Lavar as mãos antes de trocar curativo · Trocar curativo pelas bordas · Comunicar qualquer mudança de cor, odor ou quantidade de secreção · Monitorar nível de consciência pelo Glasgow · Comunicar febre imediatamente (pode indicar meningite ou infecção da ferida) · Controlar a dor sem medicar por conta própria · Comunicar sinais da Tríade de Cushing.</div></div>
+    </div>
+    <table style="margin-top:12px">
+      <thead><tr><th>Complicação pós-op neurocirurgia</th><th>Sinal que o técnico deve comunicar</th></tr></thead>
       <tbody>
-        <tr>
-          <td><strong>Traumatismo Cranioencefálico (TCE)</strong></td>
-          <td>Cirurgia para tratar hematomas, contusões ou fraturas no crânio por trauma</td>
-          <td>Controle da PA e oxigenação · Avaliação neurológica · Controle da PIC · Prevenção de infecção</td>
-        </tr>
-        <tr>
-          <td><strong>Tumores cerebrais</strong></td>
-          <td>Remoção total ou parcial do tumor, ou biópsia para diagnóstico</td>
-          <td>Curativo com técnica correta (trocar pelas bordas) · Observar secreção (odor, cor) · Comunicar febre ou vermelhidão ao redor da ferida</td>
-        </tr>
-        <tr>
-          <td><strong>Neuroestimulação medular</strong></td>
-          <td>Implante de eletrodo na medula para controle de dor crônica</td>
-          <td>Manter curativo limpo e seco · Deambulação leve (prevenir TVP) · Evitar posição 90° prolongada</td>
-        </tr>
-        <tr>
-          <td><strong>Estimulação cerebral profunda</strong></td>
-          <td>Implante de eletrodo no cérebro — indicado para Parkinson, tremor, distonia</td>
-          <td>Não levantar sozinho · Repouso · Não deitar sobre o local cirúrgico · Consultar médico antes de RNM</td>
-        </tr>
-        <tr>
-          <td><strong>Neuronavegação</strong></td>
-          <td>Cirurgia guiada por imagem 3D — para tumores de base do crânio e coluna</td>
-          <td>Monitorar sinais vitais · Orientar deambulação com apoio · Antibiótico conforme prescrição</td>
-        </tr>
+        <tr><td><strong>Ressangramento / edema cerebral</strong></td><td>Piora do Glasgow, cefaleia intensa, vômitos em jato, agitação súbita</td></tr>
+        <tr><td><strong>Infecção do sítio cirúrgico / meningite</strong></td><td>Febre, vermelhidão e secreção no curativo, rigidez de nuca</td></tr>
+        <tr><td><strong>Hipertensão intracraniana (PIC elevada)</strong></td><td>Tríade de Cushing: bradicardia + hipertensão + respiração irregular</td></tr>
+        <tr><td><strong>Convulsão</strong></td><td>Movimentos involuntários, perda de consciência, desvio do olhar</td></tr>
+        <tr><td><strong>Déficit neurológico novo</strong></td><td>Piora da fraqueza em membro, dificuldade de fala, assimetria de pupilas</td></tr>
       </tbody>
     </table>
-    <div class="ib ib-b" style="margin-top:10px">
-      <span class="ii">💡</span>
-      <div><div class="il">Cuidados gerais válidos para TODA cirurgia neurológica</div><div class="it">Lavar as mãos antes de trocar curativo · Trocar curativo pelas bordas · Comunicar qualquer mudança de cor, odor ou quantidade de secreção · Monitorar nível de consciência · Comunicar febre · Controlar a dor sem medicar por conta própria.</div></div>
-    </div>
   </div>
 
   <!-- ======= CIRÚRGICA II — CENTRO CIRÚRGICO, POSICIONAMENTO E ANESTESIA ======= -->
@@ -562,25 +753,25 @@
     </div>
   </div>
 
-  <div class="sh">Posicionamento Cirúrgico — as principais posições</div>
+  <div class="sh">Posicionamento Cirúrgico — posições relevantes ao caso</div>
   <div class="card">
     <div class="ib ib-b" style="margin-bottom:10px">
       <span class="ii">💡</span>
-      <div><div class="il">No caso de J.S.S.</div><div class="it">A craniotomia é realizada geralmente na posição <strong>supina</strong> ou <strong>Fowler modificada</strong> (semi-sentado), dependendo da localização do aneurisma. O técnico posiciona e protege o paciente com coxins nas proeminências ósseas — em 4h de cirurgia o risco de LPP é alto.</div></div>
+      <div><div class="il">No caso de J.S.S.</div><div class="it">A craniotomia é realizada geralmente na posição <strong>supina</strong> ou <strong>Fowler modificada</strong> (semi-sentado), dependendo da localização do aneurisma. O técnico posiciona e protege o paciente com coxins nas proeminências ósseas — em 4h de cirurgia o risco de LPP é muito alto.</div></div>
     </div>
     <table>
-      <thead><tr><th>Posição</th><th>Como é</th><th>Indicada para</th></tr></thead>
+      <thead><tr><th>Posição</th><th>Como é</th><th>Indicada para</th><th>Cuidados de enfermagem</th></tr></thead>
       <tbody>
-        <tr><td><strong>Supina / Dorsal</strong></td><td>De barriga para cima</td><td>Cirurgias abdominais, vasculares e indução anestésica geral</td></tr>
-        <tr><td><strong>Prona / Ventral</strong></td><td>De barriga para baixo</td><td>Região dorsal, lombar e occipital</td></tr>
-        <tr><td><strong>Lateral / Sims</strong></td><td>De lado</td><td>Rins, pulmões e esôfago</td></tr>
-        <tr><td><strong>Trendelenburg</strong></td><td>Cabeça mais baixa que os pés</td><td>Cirurgias pélvicas e de cólon</td></tr>
-        <tr><td><strong>Trendelenburg Reverso</strong></td><td>Cabeça mais alta que os pés</td><td>Cabeça, pescoço e tireoide</td></tr>
-        <tr><td><strong>Litotomia / Ginecológica</strong></td><td>Pernas elevadas em perneiras</td><td>Cirurgias ginecológicas e anorretais</td></tr>
-        <tr><td><strong>Fowler Modificada</strong></td><td>Semi-sentado 90°</td><td>Neurocirurgias, mamoplastias</td></tr>
-        <tr><td><strong>Canivete / Kraske</strong></td><td>Quadril elevado, extremidades abaixadas</td><td>Cirurgias anorretais e coluna lombar</td></tr>
+        <tr><td><strong>Supina / Dorsal</strong></td><td>De barriga para cima, membros alinhados</td><td>Neurocirurgias frontais/temporais, cirurgias abdominais, indução anestésica</td><td>Proteger proeminências ósseas (calcanhares, sacro, cotovelos) com coxins · Checar posicionamento dos membros a cada hora</td></tr>
+        <tr><td><strong>Fowler Modificada</strong></td><td>Semi-sentado, cabeça e tronco elevados (~30–90°)</td><td>Neurocirurgias da fossa posterior e vértex, craniotomias em que a cabeça precisa estar acima do coração</td><td>Risco de embolia aérea venosa · Fixar cabeça com pino de Mayfield · Acolchoar apoios · Nunca deixar pescoço fletido</td></tr>
+        <tr><td><strong>Prona / Ventral</strong></td><td>De barriga para baixo</td><td>Cirurgias da região occipital, dorsal e lombar</td><td>Proteger face, olhos e mamas · Garantir que o abdome esteja livre (não comprimido) · Verificar acesso venoso após girar</td></tr>
+        <tr><td><strong>Trendelenburg Reverso</strong></td><td>Cabeça mais alta que os pés</td><td>Cabeça, pescoço, tireoide</td><td>Fixar o paciente para não deslizar · Monitorar hipotensão postural</td></tr>
       </tbody>
     </table>
+    <div class="ib ib-o" style="margin-top:10px">
+      <span class="ii">⚠️</span>
+      <div><div class="il">Princípio geral — válido para qualquer posição</div><div class="it">Em uma cirurgia de 4 horas como a de J.S.S., o risco de lesão por pressão é alto. Coxins em todas as proeminências ósseas, manter alinhamento anatômico, evitar contato da pele com superfícies metálicas e verificar a posição após qualquer movimentação são responsabilidades do técnico circulante.</div></div>
+    </div>
   </div>
 
   <div class="sh">Anestesia — o que o técnico precisa saber</div>
@@ -650,6 +841,47 @@
 
 <!-- ===== T. INTENSIVA ===== -->
 <div id="uti" class="panel">
+  <div class="sec-banner">
+    <div class="sec-banner-bar" style="background:var(--purple)"></div>
+    <div class="sec-banner-ico">🏥</div>
+    <div><div class="sec-banner-label">Seção atual</div><div class="sec-banner-name">Terapia Intensiva</div></div>
+  </div>
+  <div class="sh">O que é a UTI — definição e contexto do caso</div>
+  <div class="card">
+    <div class="ctitle">🏥 UTI e CTI — qual a diferença?</div>
+    <div class="two-col">
+      <div class="mc">
+        <h4>UTI (Unidade de Terapia Intensiva)</h4>
+        <p>Área crítica destinada à internação de pacientes graves que requerem atenção especializada contínua, materiais específicos e tecnologias para diagnóstico, monitorização e terapia.</p>
+      </div>
+      <div class="mc">
+        <h4>CTI (Centro de Terapia Intensiva)</h4>
+        <p>Agrupamento de <em>mais de uma</em> UTI na mesma área física. J.S.S. foi internado no CTI — ou seja, num complexo de unidades intensivas, não em uma UTI isolada.</p>
+      </div>
+    </div>
+    <div class="ib ib-b" style="margin-top:10px">
+      <span class="ii">📋</span>
+      <div><div class="il">Por que J.S.S. precisava de CTI?</div><div class="it">Após cirurgia de 4 horas no crânio, com Glasgow 6, ventilação mecânica, sedação contínua e drogas vasoativas — ele se enquadra exatamente no perfil de paciente que a UTI foi criada para atender: grave, instável, necessitando de observação 24h e tomada de decisão imediata.</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Recursos humanos da UTI — dimensionamento legal</div>
+  <div class="card">
+    <p style="font-size:13px;margin-bottom:10px">A <strong>RDC nº 26/2012 da ANVISA</strong> estabelece os requisitos mínimos de pessoal de enfermagem na UTI. Saber esses números é conteúdo da matéria.</p>
+    <table>
+      <thead><tr><th>Profissional</th><th>Quantidade mínima (RDC 26/2012)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Enfermeiro plantonista</strong></td><td>1 para cada 10 leitos ou fração, em cada turno</td></tr>
+        <tr><td><strong>Técnico de Enfermagem</strong></td><td>1 para cada 2 leitos</td></tr>
+        <tr><td><strong>Médico plantonista</strong></td><td>1 para cada 10 leitos ou fração, em cada turno</td></tr>
+        <tr><td><strong>Fisioterapeuta</strong></td><td>Mínimo 1 para cada 10 leitos nos turnos matutino, vespertino e noturno (18h/dia)</td></tr>
+      </tbody>
+    </table>
+    <div class="ib ib-o" style="margin-top:10px">
+      <span class="ii">⚠️</span>
+      <div><div class="il">Por que a proporção de técnico para paciente é tão baixa?</div><div class="it">Na UTI, cada paciente é crítico e pode deteriorar a qualquer momento. A baixa proporção garante que o técnico consiga monitorar todos os parâmetros, realizar cuidados e comunicar alterações sem sobrecarga. J.S.S. no CTI demandava cuidados intensivos 24h.</div></div>
+    </div>
+  </div>
 
   <div class="sh">Por que o paciente foi para o CTI?</div>
   <div class="card">
@@ -668,6 +900,152 @@
         <p>Muito grave. Paciente não abre os olhos, não fala, não obedece comandos de forma adequada.</p>
         <p style="margin-top:6px;font-size:12px;color:var(--red)">Glasgow ≤ 8 → paciente não consegue proteger a própria via aérea → precisa de tubo (intubação).</p>
       </div>
+    </div>
+  </div>
+
+  <!-- MONITORIZAÇÃO HEMODINÂMICA NÃO INVASIVA -->
+  <div class="sh">Monitorização Hemodinâmica Não Invasiva (MHNI) — conteúdo da aula</div>
+  <div class="card">
+    <div class="ctitle">📊 O que é e por que foi usada com J.S.S.</div>
+    <p style="font-size:13px;margin-bottom:10px">A monitorização hemodinâmica é um elemento fundamental no cuidado do paciente gravemente enfermo. É um processo <strong>contínuo e diário</strong> que envolve três etapas: coleta de dados → análise e interpretação → tomada de decisão. Na UTI, os parâmetros não invasivos monitorados são:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+      <span class="chip cb">Temperatura corporal</span>
+      <span class="chip cb">Pulso</span>
+      <span class="chip cb">Oximetria de pulso (SpO₂)</span>
+      <span class="chip cb">PA não invasiva (PANI)</span>
+      <span class="chip cb">Frequência respiratória (FR)</span>
+      <span class="chip cb">Frequência cardíaca (FC)</span>
+      <span class="chip cb">Capnografia</span>
+    </div>
+    <div class="ib ib-b">
+      <span class="ii">💡</span>
+      <div><div class="il">Pulso ≠ Frequência Cardíaca — distinção importante</div><div class="it"><strong>Pulso</strong> é a onda de pressão gerada pelo coração que se propaga pelas artérias — avaliado por palpação. <strong>Frequência cardíaca</strong> é o número de vezes que o coração bate por minuto — avaliada pelo monitor (ECG). Em algumas situações (arritmias, por exemplo), os dois valores podem não coincidir.</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Temperatura corporal no CTI</div>
+  <div class="card">
+    <div class="two-col">
+      <div class="mc">
+        <h4>Por que monitorar a temperatura?</h4>
+        <p>Febre é um dos sintomas mais comuns em pacientes graves. No pós-op de neurocirurgia, pode indicar infecção da ferida, meningite pós-operatória, pneumonia (PAV) ou infecção urinária. Tratar com alta intensidade pode ser excessivo em alguns casos.</p>
+      </div>
+      <div class="mc">
+        <h4>Definição de febre na UTI</h4>
+        <p>Segundo as diretrizes de 2023: temperatura <strong>acima de 38°C</strong>.</p>
+        <p style="margin-top:6px;font-size:12px"><strong>Dispositivos preferidos:</strong> termistores (temperatura central). Na ausência: termômetros digitais ou infravermelhos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">Monitorização Cardíaca — FC e ECG contínuo</div>
+  <div class="card">
+    <p style="font-size:13px;margin-bottom:10px">A monitorização cardíaca é o <strong>registro contínuo da atividade elétrica do coração</strong> — na prática, um ECG ininterrupto que permite acompanhar os batimentos em tempo real. A AHA recomenda para <em>todos</em> os pacientes internados na UTI.</p>
+    <div class="two-col">
+      <div class="mc">
+        <h4>Valores de referência de FC</h4>
+        <ul>
+          <li>Lactentes: 120–160 bpm</li>
+          <li>Crianças: 90–140 bpm</li>
+          <li><strong>Adultos: 60–100 bpm</strong></li>
+        </ul>
+        <p style="margin-top:6px;font-size:12px;color:var(--text2)">J.S.S. chegou com FC 110 bpm (taquicardia) — acima do normal para adulto.</p>
+      </div>
+      <div class="mc">
+        <h4>Padrão dos eletrodos — dois padrões usados no Brasil</h4>
+        <p><strong>Padrão AHA:</strong> branco, preto, marrom, verde e vermelho.</p>
+        <p style="margin-top:4px"><strong>Padrão IEC:</strong> vermelho (2° EIC dir.), preto (torácica dir.), amarelo (2° EIC esq.), verde (torácica esq.), branco precordial (4° espaço paraesternal dir.).</p>
+      </div>
+    </div>
+    <div class="ib ib-o" style="margin-top:10px">
+      <span class="ii">⚠️</span>
+      <div><div class="il">Cuidados de enfermagem na monitorização cardíaca</div><div class="it">Manter 3 a 5 derivações · Comunicar bradicardias e taquicardias imediatamente · Atentar para arritmias · Conferir cabos quando houver interferência · Trocar eletrodos após banho · Evitar colocar eletrodo em locais com pelos · Seguir a ordem correta de cores.</div></div>
+    </div>
+  </div>
+
+  <div class="sh">Oximetria de Pulso (SpO₂)</div>
+  <div class="card">
+    <p style="font-size:13px;margin-bottom:10px">Mede de forma <strong>não invasiva</strong> a saturação de oxigênio no sangue. Os oxímetros são razoavelmente precisos, com margem de ±2% em relação à gasometria arterial.</p>
+    <div class="two-col">
+      <div class="mc">
+        <h4>Valores de referência</h4>
+        <ul>
+          <li>SpO₂ normal: ≥ 95%</li>
+          <li>SpO₂ 92% (J.S.S.): hipóxia — requer oxigenoterapia imediata</li>
+          <li>Meta neurológica: ≥ 94%</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Cuidados de enfermagem</h4>
+        <ul>
+          <li>Posicionar o oxímetro adequadamente no dedo</li>
+          <li>Higienizar com antisséptico a cada 24h / após banho</li>
+          <li>Mudar de dedo a cada 2h (evitar lesão por pressão)</li>
+          <li>Não molhar e evitar quedas do dispositivo</li>
+          <li>Relacionar o valor numérico com a curva de oximetria</li>
+          <li>Comunicar dessaturação imediatamente</li>
+          <li>Oferecer oxigênio conforme prescrição médica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">Pressão Arterial Não Invasiva (PANI)</div>
+  <div class="card">
+    <div class="two-col">
+      <div class="mc">
+        <h4>Valores de referência</h4>
+        <ul>
+          <li>Sistólica normal: 90–120 mmHg</li>
+          <li>Diastólica normal: 60–80 mmHg</li>
+          <li>Hipertensão: sistólica ≥ 140 mmHg</li>
+          <li>J.S.S. na admissão: 190×110 — crise hipertensiva</li>
+        </ul>
+      </div>
+      <div class="mc">
+        <h4>Cuidados de enfermagem</h4>
+        <ul>
+          <li>Colocar manguito adequado ao braço</li>
+          <li>Proteger o braço com compressa (aferições frequentes lesionam)</li>
+          <li>Limpar manguito com antisséptico a cada 24h / após banho</li>
+          <li>Comunicar hipotensão e hipertensão ao enfermeiro e médico</li>
+          <li>Realizar rodízio de manguito a cada 6h</li>
+          <li><strong>Nunca</strong> aferir em braço com FAV (fístula arteriovenosa)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">Frequência Respiratória (FR)</div>
+  <div class="card">
+    <div class="two-col">
+      <div class="mc">
+        <h4>Valores de referência</h4>
+        <ul>
+          <li>Normal adulto: 12–20 irpm (alguns autores: até 24)</li>
+          <li>Bradipneia: abaixo de 12 irpm</li>
+          <li>Taquipneia: acima de 20 irpm</li>
+        </ul>
+        <p style="margin-top:6px;font-size:12px;color:var(--text2)">Em J.S.S. com ventilação mecânica, a FR é monitorada no ventilador e no monitor multiparâmetro simultaneamente.</p>
+      </div>
+      <div class="mc">
+        <h4>Cuidados de enfermagem</h4>
+        <ul>
+          <li>Anotar FR no balanço hídrico a cada 2h</li>
+          <li>Comunicar bradipneia e taquipneia</li>
+          <li>Conferir se o valor no monitor bate com o padrão real do paciente (o sensor pode falhar)</li>
+          <li>Comunicar alterações de ritmo e profundidade respiratória</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sh">Capnografia</div>
+  <div class="card">
+    <p style="font-size:13px;margin-bottom:8px">Recurso não invasivo que <strong>registra o CO₂ expirado final</strong> (EtCO₂). Em paciente intubado como J.S.S., é um parâmetro valioso de função respiratória.</p>
+    <div class="ib ib-b">
+      <span class="ii">💡</span>
+      <div><div class="il">O que a capnografia detecta no CTI</div><div class="it">Intubação seletiva (tubo foi para brônquio errado) · Desconexão do ventilador · Embolia pulmonar · Hipertermia maligna · Monitorização indireta da ventilação e da perfusão. Quando o EtCO₂ cai a zero subitamente: emergência — verificar tubo e circuito imediatamente.</div></div>
     </div>
   </div>
 
@@ -743,6 +1121,11 @@
 
 <!-- ===== QUIZ ===== -->
 <div id="quiz" class="panel">
+  <div class="sec-banner">
+    <div class="sec-banner-bar" style="background:var(--orange)"></div>
+    <div class="sec-banner-ico">📝</div>
+    <div><div class="sec-banner-label">Seção atual</div><div class="sec-banner-name">Quiz — 29 Questões</div></div>
+  </div>
   <div class="qtop">
     <h2>Quiz — Estudo de Caso MUC</h2>
     <p>29 questões · 4 disciplinas · Alternativas A a D</p>
@@ -1110,11 +1493,21 @@ function closeDrawer(){
   document.body.style.overflow='';
 }
 
+const SECTION_NAMES = {
+  resumo: 'Resumo do Caso',
+  urgencia: 'Urgências Clínicas',
+  cirurgica: 'Cirúrgica I e II',
+  uti: 'Terapia Intensiva',
+  quiz: 'Quiz — 29 Questões'
+};
+
 function drawerNav(id,el){
   document.querySelectorAll('.drawer-item').forEach(d=>d.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  const sub = document.getElementById('headerSub');
+  if(sub) sub.textContent = SECTION_NAMES[id] || '';
   closeDrawer();
   window.scrollTo({top:0,behavior:'smooth'});
 }
