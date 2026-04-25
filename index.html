@@ -1121,36 +1121,38 @@
 
 <!-- ===== QUIZ ===== -->
 <div id="quiz" class="panel">
-  <div class="sec-banner">
-    <div class="sec-banner-bar" style="background:var(--orange)"></div>
-    <div class="sec-banner-ico">📝</div>
-    <div><div class="sec-banner-label">Seção atual</div><div class="sec-banner-name">Quiz — 29 Questões</div></div>
-  </div>
   <div class="qtop">
     <h2>Quiz — Estudo de Caso MUC</h2>
-    <p>29 questões · 4 disciplinas · Alternativas A a D</p>
+    <p>40 questões · 4 disciplinas · Alternativas A a D</p>
   </div>
   <div class="pw"><div class="pf" id="pf" style="width:0%"></div></div>
+
+  <!-- NAVEGADOR DE PERGUNTAS -->
+  <div id="qnav-wrap" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:8px;">Pular para uma questão</div>
+    <div id="qnav" style="display:flex;flex-wrap:wrap;gap:5px;"></div>
+  </div>
+
   <div id="qc"></div>
   <div class="score-p" id="sp">
     <div class="scirc" id="scirc">
       <div class="sbig" id="sbig">—</div>
-      <div class="stot" id="stot">/29</div>
+      <div class="stot" id="stot">/40</div>
     </div>
     <div class="stitle" id="stitle">Resultado</div>
     <div class="ssub" id="ssub"></div>
     <button class="btn-r" onclick="restart()">Reiniciar quiz</button>
   </div>
   <div class="qf" id="qfoot">
-    <span class="qct" id="qct">1 de 29</span>
+    <span class="qct" id="qct">1 de 40</span>
     <button class="btn-n" id="btn" onclick="nextQ()" disabled>Próxima</button>
   </div>
 </div>
 
 <script>
 const QS = [
+  /* ==================== URGÊNCIAS CLÍNICAS (10) ==================== */
   {
-    // gabarito: A (c:0)
     d:"Urgências Clínicas", dc:"cr",
     t:"O paciente J.S.S. chegou ao pronto-socorro com dor de cabeça descrita como 'a pior dor de cabeça da vida', de início muito súbito. Como a equipe de enfermagem deve classificar essa situação?",
     o:["Urgência máxima — o caráter súbito e a intensidade máxima da dor exigem comunicação imediata ao enfermeiro e monitorização","Urgência moderada — a dor de cabeça é comum em hipertensos e pode ser manejada com analgésico antes da avaliação médica","Situação não urgente — sem febre ou perda de consciência, o paciente pode aguardar triagem na fila convencional","Urgência relativa — registrar os sintomas no prontuário e aguardar o médico para definir a prioridade de atendimento"],
@@ -1158,15 +1160,13 @@ const QS = [
     f:"Uma dor de cabeça súbita e intensa assim é sinal de alerta para sangramento cerebral. O técnico de enfermagem deve tratar como emergência: comunicar ao enfermeiro imediatamente, iniciar monitorização e estar pronto para os primeiros cuidados."
   },
   {
-    // gabarito: C (c:2)
     d:"Urgências Clínicas", dc:"cr",
     t:"Na chegada ao hospital, J.S.S. estava com SpO₂ de 92%. Qual deve ser o primeiro cuidado da enfermagem?",
-    o:["Posicionar o paciente em decúbito lateral para facilitar a respiração e aguardar a gasometria arterial","Verificar a pressão arterial e a frequência cardíaca antes de qualquer intervenção, pois são parâmetros mais urgentes","Oferecer oxigênio imediatamente — a saturação abaixo de 95% em paciente neurológico exige suporte ventilatório sem demora","Coletar exames laboratoriais com urgência, pois a hipóxia só é confirmada com gasometria arterial"],
+    o:["Posicionar o paciente em decúbito lateral para facilitar a respiração e aguardar a gasometria arterial","Verificar a pressão arterial e a frequência cardíaca antes de qualquer intervenção, pois são parâmetros mais urgentes","Oferecer oxigenoterapia imediatamente — saturação abaixo de 95% em paciente neurológico exige suplementação de oxigênio sem demora","Coletar exames laboratoriais com urgência, pois a hipóxia só é confirmada com gasometria arterial"],
     c:2,
     f:"Saturação de 92% significa que o paciente está com pouco oxigênio no sangue. Isso é perigoso para o cérebro já lesionado. O técnico deve oferecer oxigênio (cateter nasal ou máscara) imediatamente e comunicar o enfermeiro."
   },
   {
-    // gabarito: B (c:1)
     d:"Urgências Clínicas", dc:"cr",
     t:"J.S.S. estava com Glasgow de 10 na admissão. O que esse valor indica sobre o estado neurológico do paciente?",
     o:["Glasgow 10 equivale a 66% da pontuação máxima, o que significa que o paciente está alerta e orientado no tempo e espaço","O paciente tem consciência reduzida — responde a estímulos, mas não está totalmente alerta, exigindo observação contínua","Glasgow 10 corresponde a um quadro de coma profundo, onde o paciente não responde a nenhum tipo de estímulo externo","O valor indica apenas sonolência leve, típica de pacientes que tomaram medicação para dor, sem relação com lesão neurológica"],
@@ -1174,7 +1174,6 @@ const QS = [
     f:"A Escala de Glasgow vai de 3 (pior) a 15 (melhor). Glasgow 10 significa que o paciente está com a consciência rebaixada — pode abrir os olhos com estímulo, responde de alguma forma, mas não está completamente alerta. A equipe precisa acompanhar de perto qualquer mudança."
   },
   {
-    // gabarito: D (c:3)
     d:"Urgências Clínicas", dc:"cr",
     t:"Durante o atendimento, o técnico observa que J.S.S. passou a apresentar coração mais lento, pressão subindo e respiração irregular ao mesmo tempo. O que deve fazer?",
     o:["Reduzir a infusão do soro para diminuir a sobrecarga hídrica, que pode estar causando a alteração nos sinais vitais","Verificar se o oxímetro está bem posicionado e repetir a aferição da pressão no outro braço antes de acionar a equipe","Oferecer água por via oral e aguardar 15 minutos, pois alterações isoladas de sinais vitais são comuns em pacientes agitados","Comunicar o enfermeiro imediatamente — a combinação desses três sinais ao mesmo tempo indica situação muito grave"],
@@ -1182,7 +1181,6 @@ const QS = [
     f:"Coração lento + pressão subindo + respiração irregular formam a Tríade de Cushing — um sinal de que a pressão dentro do crânio está muito alta e o paciente pode estar em perigo de vida. O técnico deve comunicar o enfermeiro imediatamente."
   },
   {
-    // gabarito: A (c:0)
     d:"Urgências Clínicas", dc:"cr",
     t:"Por que a cabeceira do leito de J.S.S. foi mantida elevada a 30 graus durante todo o tratamento?",
     o:["Reduz a pressão dentro do crânio ao favorecer o retorno venoso cerebral e previne a aspiração do conteúdo gástrico para os pulmões","Facilita a movimentação do paciente no leito pela equipe e melhora o conforto durante procedimentos de higiene","Melhora a circulação nos membros inferiores, prevenindo o inchaço nas pernas causado pelo tempo prolongado no leito","Facilita a visualização do monitor cardíaco posicionado acima do leito e a leitura dos parâmetros pelo técnico"],
@@ -1190,79 +1188,6 @@ const QS = [
     f:"A cabeceira a 30° ajuda o sangue a circular melhor saindo do crânio, reduzindo a pressão interna. Ao mesmo tempo, previne que o conteúdo do estômago vá para os pulmões (aspiração). É um cuidado simples e muito importante no AVC hemorrágico."
   },
   {
-    // gabarito: C (c:2)
-    d:"Cirúrgica I", dc:"cg",
-    t:"Antes da cirurgia de J.S.S., a equipe realizou o checklist de cirurgia segura da OMS. Qual é o objetivo central desse protocolo?",
-    o:["Garantir que o prontuário do paciente esteja completo e devidamente assinado pelo médico responsável antes da entrada no bloco","Verificar se todos os profissionais da equipe cirúrgica estão com os equipamentos de proteção individual adequados","Prevenir erros graves durante o ato cirúrgico, como realizar o procedimento no local errado ou esquecer material dentro do paciente","Organizar a sequência de cirurgias do dia conforme a gravidade dos casos e disponibilidade da equipe anestésica"],
-    c:2,
-    f:"O checklist de cirurgia segura serve para prevenir erros que podem ser fatais: operar o paciente errado, no local errado ou deixar compressas e instrumentos dentro da cavidade operada. É aplicado em 3 momentos: antes da anestesia, antes de cortar e antes de sair da sala."
-  },
-  {
-    // gabarito: D (c:3)
-    d:"Cirúrgica I", dc:"cg",
-    t:"No momento do 'Time Out' (segunda etapa do checklist), como deve ser a participação da equipe de enfermagem?",
-    o:["A enfermagem aguarda em silêncio enquanto o cirurgião e o anestesista fazem as verificações, atuando somente se for chamada","Apenas o enfermeiro responsável participa do Time Out; o técnico continua preparando os materiais cirúrgicos na mesa","O técnico de enfermagem confere em silêncio a esterilização dos instrumentos, sem interromper a fala do cirurgião","Toda a equipe — incluindo o técnico — para o que está fazendo, confirma em voz alta o paciente, o procedimento e o local cirúrgico"],
-    c:3,
-    f:"O Time Out é uma pausa de segurança antes da incisão onde TODA a equipe — cirurgião, anestesista e enfermagem — confirma em voz alta que está com o paciente certo, fazendo a cirurgia certa, no local certo. Qualquer pessoa da equipe pode (e deve) falar se perceber algo errado."
-  },
-  {
-    // gabarito: A (c:0)
-    d:"Cirúrgica I", dc:"cg",
-    t:"A cirurgia de J.S.S. durou aproximadamente 4 horas. Considerando esse tempo prolongado na mesa cirúrgica, qual é o principal risco relacionado ao posicionamento que a enfermagem deve prevenir ativamente?",
-    o:["Lesão por Pressão nas proeminências ósseas, causada pela compressão contínua da pele em pontos como calcanhares, sacro e occipital","Hipoglicemia, pois o paciente diabético ficou muitas horas sem se alimentar e sem reposição de glicose endovenosa durante o procedimento","Reação alérgica tardia aos gases anestésicos utilizados durante a manutenção anestésica ao longo das quatro horas","Perda de calor excessiva por conta da exposição prolongada ao ambiente frio do centro cirúrgico, sem cobertura adequada"],
-    c:0,
-    f:"Em cirurgias longas, o paciente fica horas na mesma posição sem poder se mexer. Isso comprime a pele sobre os ossos e pode causar lesão por pressão (escara). A enfermagem deve garantir que os pontos de pressão (calcanhares, sacro, cabeça) estejam bem protegidos e acolchoados."
-  },
-  {
-    // gabarito: C (c:2)
-    d:"Cirúrgica II", dc:"co",
-    t:"Após a alta do CTI para a ala cirúrgica, J.S.S. estava consciente, mas confuso e com fraqueza no lado direito. Levando em conta esses dois fatores juntos, qual é o principal risco de segurança a ser priorizado?",
-    o:["Infecção do sítio cirúrgico, pois o curativo da craniotomia ainda está presente e o paciente pode tocá-lo sem perceber","Broncoaspiração durante as refeições, já que a confusão mental pode fazer o paciente engolir o alimento de forma errada","Queda, pois a desorientação pode levar o paciente a tentar se levantar sozinho sem calcular que o lado direito está fraco","Ressecamento da pele e desenvolvimento de escara, já que o paciente ficou muito tempo imóvel no CTI antes da transferência"],
-    c:2,
-    f:"Paciente confuso + fraqueza no braço e perna direitos = risco muito alto de queda. Ele pode tentar levantar sem pedir ajuda ou não calcular bem o equilíbrio. A enfermagem deve: manter grades, cama baixa, campainha no alcance e orientar que peça ajuda para levantar."
-  },
-  {
-    // gabarito: D (c:3)
-    d:"Cirúrgica II", dc:"co",
-    t:"Na orientação de alta de J.S.S., qual aspecto do histórico do paciente exige destaque especial da equipe de enfermagem?",
-    o:["A necessidade de repouso absoluto por 90 dias, evitando qualquer atividade física para não sobrecarregar o cérebro operado","A importância de fazer fisioterapia intensiva todos os dias para eliminar completamente a fraqueza residual no lado direito","A troca completa da alimentação por dieta líquida, pois cirurgias cerebrais comprometem permanentemente a mastigação","A adesão ao tratamento medicamentoso contínuo, já que o uso irregular de remédios foi um fator que contribuiu para o AVC"],
-    c:3,
-    f:"O texto diz que o paciente 'fazia uso irregular de medicações'. Isso significa que ele não tomava os remédios para pressão, diabetes e colesterol direito — e isso contribuiu para o AVC. Reforçar a adesão ao tratamento é o ponto mais importante da orientação de alta nesse caso."
-  },
-  {
-    // gabarito: B (c:1)
-    d:"Terapia Intensiva", dc:"cp",
-    t:"No CTI, J.S.S. estava intubado e em ventilação mecânica. Por que a higiene oral é considerada parte essencial dos cuidados de enfermagem nesse contexto?",
-    o:["Para facilitar a fixação do tubo endotraqueal e evitar que ele se desloque durante a aspiração de secreções","A boca seca favorece a proliferação de bactérias que, em pacientes intubados, podem descer pelo tubo e causar pneumonia","Para prevenir lesões nos lábios causadas pela pressão do esparadrapo de fixação do tubo endotraqueal","A higiene oral melhora a saturação de oxigênio ao desobstruir as vias aéreas superiores do paciente sedado"],
-    c:1,
-    f:"Paciente intubado não consegue cuspir ou limpar a boca sozinho. Bactérias acumuladas na boca podem descer pelo tubo e causar pneumonia — chamada PAV (Pneumonia Associada à Ventilação). A higiene oral é uma das principais medidas de prevenção dessa infecção."
-  },
-  {
-    // gabarito: C (c:2)
-    d:"Terapia Intensiva", dc:"cp",
-    t:"Para avaliar o risco de lesão por pressão em pacientes críticos como J.S.S., qual instrumento a equipe de enfermagem deve aplicar?",
-    o:["Escala de Glasgow — quanto menor o valor, maior o risco de desenvolver lesão por pressão por rebaixamento de consciência","Escala de Barthel — avalia o grau de dependência nas atividades diárias, o que determina indiretamente o risco de escara","Escala de Braden — avalia fatores como mobilidade, umidade, nutrição e percepção sensorial para estimar o risco de LPP","Escala RASS — o nível de sedação interfere na movimentação espontânea e, por isso, é usada para classificar o risco de LPP"],
-    c:2,
-    f:"A Escala de Braden avalia itens como: o paciente consegue se mover? A pele está úmida? Ele está bem nutrido? Quanto menor a pontuação, maior o risco de desenvolver escara. Com base nisso, a enfermagem define a frequência da mudança de decúbito e outras medidas preventivas."
-  },
-  {
-    // gabarito: A (c:0)
-    d:"Terapia Intensiva", dc:"cp",
-    t:"J.S.S. ficou imóvel no leito por muitos dias. Por que a equipe de enfermagem aplica medidas de prevenção de trombose venosa profunda (TVP)?",
-    o:["A circulação lenta nas veias das pernas pela imobilidade favorece a formação de coágulos que podem se desprender e atingir os pulmões","A sedação usada no CTI provoca vasodilatação excessiva nas pernas, o que aumenta o risco de formação de coágulos venosos","O tipo de aneurisma cerebral que J.S.S. tinha é geneticamente associado a maior tendência de trombose nas extremidades","O respirador mecânico gera variações de pressão no tórax que dificultam o retorno do sangue das pernas para o coração"],
-    c:0,
-    f:"Quando o paciente fica muito tempo parado, o sangue circula mais devagar nas veias das pernas e pode formar um coágulo — a TVP. Se esse coágulo se soltar, pode ir para o pulmão (embolia pulmonar), o que é gravíssimo. Meias compressivas e mobilização passiva dos membros ajudam a prevenir."
-  },
-  {
-    // gabarito: D (c:3)
-    d:"Terapia Intensiva", dc:"cp",
-    t:"Dentre as medidas de prevenção de infecção em ambiente hospitalar, qual delas tem comprovação científica como a mais eficaz e deve ser realizada antes e depois de todo contato com o paciente?",
-    o:["Uso de avental descartável em todos os atendimentos, pois o uniforme é a principal via de transmissão de microrganismos","Troca de luvas entre um procedimento e outro, sem necessidade de higienizar as mãos quando se usa luvas descartáveis","Uso obrigatório de máscara cirúrgica em todos os ambientes hospitalares, independentemente do tipo de procedimento realizado","Higiene correta das mãos com água e sabão ou álcool gel, pois as mãos são a principal via de transmissão de infecções hospitalares"],
-    c:3,
-    f:"A higiene das mãos é a medida número 1 de prevenção de infecções hospitalares. A maioria das infecções no hospital é transmitida pelas mãos dos profissionais de saúde. Lavar as mãos corretamente (com água e sabão ou álcool gel) antes e depois de cada contato com o paciente é simples, grátis e salva vidas."
-  },
-  {
-    // Q15 — gabarito: B (c:1)
     d:"Urgências Clínicas", dc:"cr",
     t:"J.S.S. chegou com frequência cardíaca de 110 bpm. Como o técnico de enfermagem deve classificar e registrar corretamente esse valor?",
     o:["Valor dentro da normalidade — a faixa aceitável para adultos em situação de estresse vai de 100 a 130 bpm, sem necessidade de comunicação imediata","Taquicardia — frequência cardíaca acima de 100 bpm em adulto em repouso é uma alteração que deve ser registrada e comunicada ao enfermeiro","Bradicardia leve — frequência abaixo de 120 bpm em pacientes com dor intensa é considerada bradicardia reflexa e não requer intervenção","Arritmia — qualquer frequência fora de 60 bpm é classificada como arritmia e requer monitorização cardíaca antes de qualquer registro"],
@@ -1270,7 +1195,6 @@ const QS = [
     f:"A frequência cardíaca normal de um adulto em repouso é entre 60 e 100 bpm. Acima de 100 bpm é chamada de taquicardia. Com 110 bpm, o técnico deve registrar e comunicar ao enfermeiro, pois esse dado se soma a outros sinais de gravidade no quadro do paciente."
   },
   {
-    // Q16 — gabarito: D (c:3)
     d:"Urgências Clínicas", dc:"cr",
     t:"J.S.S. tem Diabetes Mellitus tipo 2 e chegou com glicemia capilar de 280 mg/dL. Qual é a conduta correta do técnico de enfermagem ao identificar esse valor?",
     o:["Oferecer pequena quantidade de suco natural sem açúcar para estabilizar a glicemia sem risco de piora","Ignorar o valor por enquanto, pois diabéticos tipo 2 frequentemente chegam ao hospital com glicemias acima de 250 mg/dL sem sintomas graves","Aplicar insulina de ação rápida disponível no posto conforme o protocolo padrão da unidade, sem aguardar prescrição específica","Registrar o valor da glicemia, comunicar ao enfermeiro responsável e aguardar a prescrição médica antes de qualquer intervenção"],
@@ -1278,7 +1202,6 @@ const QS = [
     f:"O técnico de enfermagem não pode administrar insulina sem prescrição. O correto é registrar o valor da glicemia capilar, comunicar ao enfermeiro e ao médico para que a conduta adequada seja prescrita. Glicemia de 280 mg/dL é uma hiperglicemia importante que precisa de atenção imediata."
   },
   {
-    // Q17 — gabarito: A (c:0)
     d:"Urgências Clínicas", dc:"cr",
     t:"O SAMU trouxe J.S.S. com rebaixamento de consciência. Ao receber o paciente na UPA, qual deve ser a primeira avaliação prioritária da equipe de enfermagem?",
     o:["Verificar se as vias aéreas estão livres, se o paciente está respirando e se há pulso — essas são as prioridades absolutas no atendimento de urgência","Registrar o histórico de doenças relatado pelo SAMU e conferir os documentos do paciente para abertura correta do prontuário","Pesar o paciente assim que possível para ter o dado disponível ao médico no cálculo de dosagens de medicação","Acionar a família antes de qualquer procedimento para obter informações sobre alergias e medicamentos em uso"],
@@ -1286,15 +1209,42 @@ const QS = [
     f:"Na chegada de um paciente em estado grave, a prioridade absoluta é o ABC: via aérea (Airway), respiração (Breathing) e circulação (Circulation). Verificar se o paciente respira e tem pulso é sempre o primeiro passo no atendimento de urgência."
   },
   {
-    // Q18 — gabarito: C (c:2)
     d:"Urgências Clínicas", dc:"cr",
     t:"A pressão arterial de J.S.S. era 190×110 mmHg na admissão. Quais são os valores de referência corretos para classificar a pressão arterial de um adulto?",
-    o:["Pressão normal vai até 140×90 mmHg; valores acima disso são classificados como hipertensão leve apenas em idosos","Considera-se normal qualquer valor abaixo de 160×100 mmHg para adultos acima de 35 anos, sem histórico cardíaco","O valor ideal é até 120×80 mmHg; valores persistentemente acima de 140×90 mmHg já caracterizam hipertensão arterial","Toda pressão acima de 120×80 mmHg já configura hipertensão, independentemente da faixa etária ou das circunstâncias"],
+    o:["Pressão normal vai até 140×90 mmHg; valores acima disso são classificados como hipertensão leve apenas em idosos","Considera-se normal qualquer valor abaixo de 160×100 mmHg para adultos acima de 35 anos, sem histórico cardíaco","O valor ideal é até 120×80 mmHg; valores persistentemente acima de 140×90 mmHg já caracterizam hipertensão arterial","Qualquer pressão acima de 100×60 mmHg já configura hipertensão, independentemente da faixa etária ou das circunstâncias"],
     c:2,
     f:"O valor ideal de pressão arterial para adultos é até 120×80 mmHg. Valores persistentemente acima de 140×90 mmHg já são considerados hipertensão. A pressão de 190×110 mmHg de J.S.S. é uma crise hipertensiva — uma emergência que pode causar danos graves ao cérebro, coração e rins."
   },
   {
-    // Q19 — gabarito: B (c:1)
+    d:"Urgências Clínicas", dc:"cr",
+    t:"J.S.S. apresentou vômito em jato logo após a chegada ao pronto-socorro. Qual é a principal preocupação da equipe de enfermagem diante desse sinal, no contexto do quadro neurológico do paciente?",
+    o:["Desidratação — o vômito repetido pode causar desequilíbrio eletrolítico grave, sendo necessária reposição venosa imediata","Hiperglicemia — o vômito desencadeia liberação de cortisol, que eleva a glicemia em pacientes diabéticos como J.S.S.","Aspiração pulmonar — o paciente com nível de consciência rebaixado pode inalar o vômito, levando a pneumonia grave","Hipertensão — o esforço do vômito aumenta transitoriamente a pressão arterial, agravando o sangramento cerebral"],
+    c:2,
+    f:"O vômito em jato (em projétil) é um sinal clássico de aumento da pressão intracraniana. Em um paciente com consciência rebaixada como J.S.S., o reflexo de proteção da via aérea está comprometido, o que eleva o risco de aspiração do vômito para os pulmões. O técnico deve posicionar o paciente lateralmente e comunicar o enfermeiro imediatamente."
+  },
+  /* ==================== CIRÚRGICA I (10) ==================== */
+  {
+    d:"Cirúrgica I", dc:"cg",
+    t:"Antes da cirurgia de J.S.S., a equipe realizou o checklist de cirurgia segura da OMS. Qual é o objetivo central desse protocolo?",
+    o:["Garantir que o prontuário do paciente esteja completo e devidamente assinado pelo médico responsável antes da entrada no bloco","Verificar se todos os profissionais da equipe cirúrgica estão com os equipamentos de proteção individual adequados","Prevenir erros graves durante o ato cirúrgico, como realizar o procedimento no local errado ou esquecer material dentro do paciente","Organizar a sequência de cirurgias do dia conforme a gravidade dos casos e disponibilidade da equipe anestésica"],
+    c:2,
+    f:"O checklist de cirurgia segura serve para prevenir erros que podem ser fatais: operar o paciente errado, no local errado ou deixar compressas e instrumentos dentro da cavidade operada. É aplicado em 3 momentos: antes da anestesia, antes de cortar e antes de sair da sala."
+  },
+  {
+    d:"Cirúrgica I", dc:"cg",
+    t:"No momento do 'Time Out' (segunda etapa do checklist), como deve ser a participação da equipe de enfermagem?",
+    o:["A enfermagem aguarda em silêncio enquanto o cirurgião e o anestesista fazem as verificações, atuando somente se for chamada","Apenas o enfermeiro responsável participa do Time Out; o técnico continua preparando os materiais cirúrgicos na mesa","O técnico de enfermagem confere em silêncio a esterilização dos instrumentos, sem interromper a fala do cirurgião","Toda a equipe — incluindo o técnico — para o que está fazendo, confirma em voz alta o paciente, o procedimento e o local cirúrgico"],
+    c:3,
+    f:"O Time Out é uma pausa de segurança antes da incisão onde TODA a equipe — cirurgião, anestesista e enfermagem — confirma em voz alta que está com o paciente certo, fazendo a cirurgia certa, no local certo. Qualquer pessoa da equipe pode (e deve) falar se perceber algo errado."
+  },
+  {
+    d:"Cirúrgica I", dc:"cg",
+    t:"A cirurgia de J.S.S. durou aproximadamente 4 horas. Considerando esse tempo prolongado na mesa cirúrgica, qual é o principal risco relacionado ao posicionamento que a enfermagem deve prevenir ativamente?",
+    o:["Lesão por Pressão nas proeminências ósseas, causada pela compressão contínua da pele em pontos como calcanhares, sacro e occipital","Hipoglicemia, pois o paciente diabético ficou muitas horas sem se alimentar e sem reposição de glicose endovenosa durante o procedimento","Reação alérgica tardia aos gases anestésicos utilizados durante a manutenção anestésica ao longo das quatro horas","Perda de calor excessiva por conta da exposição prolongada ao ambiente frio do centro cirúrgico, sem cobertura adequada"],
+    c:0,
+    f:"Em cirurgias longas, o paciente fica horas na mesma posição sem poder se mexer. Isso comprime a pele sobre os ossos e pode causar lesão por pressão (escara). A enfermagem deve garantir que os pontos de pressão (calcanhares, sacro, cabeça) estejam bem protegidos e acolchoados."
+  },
+  {
     d:"Cirúrgica I", dc:"cg",
     t:"Antes de J.S.S. entrar no centro cirúrgico, o técnico de enfermagem confere a pulseira de identificação do paciente. Qual é o propósito específico dessa ação dentro do protocolo de segurança?",
     o:["Confirmar que o paciente está em jejum há tempo suficiente e que o preparo pré-operatório foi concluído corretamente","Garantir que o procedimento cirúrgico será realizado na pessoa certa, prevenindo erro de identidade no centro cirúrgico","Verificar se o horário de entrada no bloco está dentro do prazo previsto no agendamento da cirurgia do dia","Assegurar que o paciente recebeu a medicação pré-anestésica prescrita antes de entrar na sala de operação"],
@@ -1302,15 +1252,13 @@ const QS = [
     f:"Conferir a pulseira de identificação é uma das principais medidas de segurança do paciente no centro cirúrgico. É a forma de garantir que o procedimento certo seja feito na pessoa certa. Esse é um dos itens verificados no Sign In, primeira etapa do checklist da OMS."
   },
   {
-    // Q20 — gabarito: A (c:0)
     d:"Cirúrgica I", dc:"cg",
     t:"O Sign In é a primeira etapa do checklist de cirurgia segura da OMS. Em qual momento exato ele deve ser executado?",
     o:["Antes da indução anestésica — enquanto o paciente ainda está consciente e pode participar da confirmação de seus próprios dados","Imediatamente após a indução anestésica, quando o paciente já está sedado e a equipe pode agir sem interrupções","Logo antes da incisão cirúrgica, como um segundo momento de revisão após a anestesia já ter sido feita","Após o término da cirurgia, para registrar formalmente o que foi realizado antes de o paciente ser encaminhado à recuperação"],
     c:0,
-    f:"O Sign In acontece antes de o anestesista iniciar a sedação. Com o paciente ainda consciente é possível confirmar dados com ele mesmo — nome, tipo de cirurgia, alergias. Também são verificados os equipamentos e a disponibilidade de sangue, se necessário. É a primeira barreira de segurança cirúrgica."
+    f:"O Sign In acontece antes de o anestesista iniciar a sedação. Quando o paciente está consciente, é possível confirmar dados com ele mesmo — nome, tipo de cirurgia, alergias. Em emergências, a confirmação é feita com o prontuário e o acompanhante. Também são verificados os equipamentos e a disponibilidade de sangue. É a primeira barreira de segurança cirúrgica."
   },
   {
-    // Q21 — gabarito: D (c:3)
     d:"Cirúrgica I", dc:"cg",
     t:"Na terceira etapa do checklist de cirurgia segura (Sign Out), qual é a responsabilidade específica da equipe de enfermagem?",
     o:["Confirmar que o paciente está acordando da anestesia de forma estável antes de ser transferido para a sala de recuperação","Checar se o cirurgião preencheu o relatório operatório no prontuário antes de o paciente sair da sala","Reunir todos os exames pré-operatórios e certificar que foram arquivados corretamente no prontuário do paciente","Realizar a contagem final de compressas, instrumentos e agulhas para certificar que nenhum material ficou dentro do paciente"],
@@ -1318,7 +1266,6 @@ const QS = [
     f:"No Sign Out, a enfermagem é responsável pela contagem final de todos os materiais usados: compressas, gazes, instrumentos e agulhas. O objetivo é assegurar que nenhum material foi esquecido dentro da cavidade operada — um erro que pode causar infecção grave e exigir nova cirurgia."
   },
   {
-    // Q22 — gabarito: C (c:2)
     d:"Cirúrgica I", dc:"cg",
     t:"J.S.S. precisou ficar em jejum antes de entrar para a cirurgia. Qual é a razão técnica correta para essa exigência?",
     o:["O jejum reduz o volume de sangue circulante, o que facilita o controle de possíveis sangramentos durante a cirurgia cerebral","Com o estômago vazio, os anestésicos inalatórios atingem a corrente sanguínea mais rápido, encurtando o tempo de indução","Durante a anestesia os reflexos de proteção da via aérea ficam reduzidos, e o estômago cheio aumenta o risco de vômito e aspiração pulmonar","O jejum previne crises de hipoglicemia no intraoperatório, especialmente em pacientes diabéticos como J.S.S."],
@@ -1326,7 +1273,42 @@ const QS = [
     f:"Durante a anestesia os reflexos que protegem a via aérea ficam diminuídos. Se o estômago estiver cheio, o paciente pode vomitar e o vômito pode ser aspirado para os pulmões — o que pode ser fatal. O jejum reduz esse risco ao garantir que o estômago esteja vazio no momento da indução."
   },
   {
-    // Q23 — gabarito: B (c:1)
+    d:"Cirúrgica I", dc:"cg",
+    t:"A craniotomia de J.S.S. foi realizada na posição supina. Qual é a posição supina e por que ela é compatível com esse tipo de cirurgia?",
+    o:["O paciente fica de bruços (decúbito ventral), o que facilita o acesso à região posterior do crânio onde o aneurisma estava localizado","O paciente fica sentado a 90°, o que melhora a visibilidade da equipe cirúrgica e reduz o sangramento por efeito gravitacional","O paciente fica de barriga para cima (decúbito dorsal), permitindo acesso frontal e lateral ao crânio com boa exposição para a equipe","O paciente fica em decúbito lateral sobre o lado esquerdo, o que libera o hemisfério cerebral direito para o campo cirúrgico"],
+    c:2,
+    f:"A posição supina é o decúbito dorsal — o paciente fica de costas, de barriga para cima. É uma das posições mais usadas em neurocirurgias frontais e temporais, pois oferece boa exposição do campo operatório para a equipe e facilita o controle da via aérea pelo anestesista."
+  },
+  {
+    d:"Cirúrgica I", dc:"cg",
+    t:"Qual é a principal função do técnico de enfermagem na posição de circulante de sala durante a cirurgia de J.S.S.?",
+    o:["Instrumentar o cirurgião diretamente na mesa, entregando bisturis, pinças e outros materiais estéreis conforme a solicitação","Monitorar continuamente os sinais vitais do paciente no monitor multiparamétrico e registrar os dados a cada 15 minutos","Atuar fora do campo estéril, buscando materiais, registrando o que é utilizado e servindo de apoio logístico à equipe cirúrgica","Aplicar a anestesia local de reforço quando solicitado pelo anestesista durante procedimentos de longa duração"],
+    c:2,
+    f:"O circulante de sala atua fora do campo estéril, dando suporte logístico à cirurgia: busca materiais, faz registros, auxilia no posicionamento, coloca a placa do bisturi elétrico e presta suporte à equipe sem tocar na área estéril. Quem atua diretamente no campo cirúrgico entregando instrumentos é o instrumentador."
+  },
+  {
+    d:"Cirúrgica I", dc:"cg",
+    t:"Após a cirurgia de J.S.S., o técnico responsável pela limpeza da sala deve seguir uma sequência específica. Qual é a ordem correta de limpeza e desinfecção?",
+    o:["Iniciar pela mesa cirúrgica — que é o item mais contaminado — e terminar pela porta, garantindo que a sala fique limpa de dentro para fora","Retirar o material contaminado primeiro, remover resíduos de anestesia para o expurgo, encaminhar materiais não usados para reprocessamento e desinfetar mobiliário com álcool 70% — a mesa cirúrgica por último","Desinfetar todos os equipamentos com álcool 70% ao mesmo tempo para economizar tempo entre uma cirurgia e a próxima da programação","Encaminhar o paciente para a recuperação anestésica e só então iniciar a limpeza, pois qualquer movimentação antes disso pode contaminar a equipe"],
+    c:1,
+    f:"A sequência correta é: retirar material contaminado → encaminhar material de anestesia ao expurgo → encaminhar materiais estéreis não usados para reprocessamento → desinfetar o mobiliário com álcool 70%, deixando a mesa cirúrgica por último por ser a mais contaminada. Se houver sangue ressecado, descontaminar antes com desinfetante específico."
+  },
+  /* ==================== CIRÚRGICA II (10) ==================== */
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"Após a alta do CTI para a ala cirúrgica, J.S.S. estava consciente, mas confuso e com fraqueza no lado direito. Levando em conta esses dois fatores juntos, qual é o principal risco de segurança a ser priorizado?",
+    o:["Infecção do sítio cirúrgico, pois o curativo da craniotomia ainda está presente e o paciente pode tocá-lo sem perceber","Broncoaspiração durante as refeições, já que a confusão mental pode fazer o paciente engolir o alimento de forma errada","Queda, pois a desorientação pode levar o paciente a tentar se levantar sozinho sem calcular que o lado direito está fraco","Ressecamento da pele e desenvolvimento de escara, já que o paciente ficou muito tempo imóvel no CTI antes da transferência"],
+    c:2,
+    f:"Paciente confuso + fraqueza no braço e perna direitos = risco muito alto de queda. Ele pode tentar levantar sem pedir ajuda ou não calcular bem o equilíbrio. A enfermagem deve: manter grades, cama baixa, campainha no alcance e orientar que peça ajuda para levantar."
+  },
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"Na orientação de alta de J.S.S., qual aspecto do histórico do paciente exige destaque especial da equipe de enfermagem?",
+    o:["A necessidade de repouso absoluto por 90 dias, evitando qualquer atividade física para não sobrecarregar o cérebro operado","A importância de fazer fisioterapia intensiva todos os dias para eliminar completamente a fraqueza residual no lado direito","A troca completa da alimentação por dieta líquida, pois cirurgias cerebrais comprometem permanentemente a mastigação","A adesão ao tratamento medicamentoso contínuo, já que o uso irregular de remédios foi um fator que contribuiu para o AVC"],
+    c:3,
+    f:"O texto diz que o paciente 'fazia uso irregular de medicações'. Isso significa que ele não tomava os remédios para pressão, diabetes e colesterol direito — e isso contribuiu para o AVC. Reforçar a adesão ao tratamento é o ponto mais importante da orientação de alta nesse caso."
+  },
+  {
     d:"Cirúrgica II", dc:"co",
     t:"J.S.S. voltou da cirurgia com curativo na cabeça. O técnico observa sangramento ativo no curativo durante a avaliação. Qual é a conduta mais adequada?",
     o:["Trocar o curativo imediatamente utilizando técnica asséptica, pois manter curativo com sangramento ativo aumenta o risco de infecção","Comunicar o enfermeiro sem manipular o curativo — sangramento pós-cirúrgico na cabeça pode indicar complicação grave","Comprimir o curativo com a mão enluvada para estancar o sangramento e só depois comunicar o enfermeiro, quando estiver controlado","Reforçar o curativo com gaze adicional por cima e registrar no prontuário, aguardando avaliação médica no próximo horário de visita"],
@@ -1334,7 +1316,6 @@ const QS = [
     f:"Sangramento ativo no curativo pós-cirúrgico é um achado que exige comunicação imediata ao enfermeiro. O técnico não deve manipular o curativo sem orientação — pode ser sangramento interno ou complicação cirúrgica grave. A conduta correta é comunicar de imediato e registrar a observação."
   },
   {
-    // Q24 — gabarito: D (c:3)
     d:"Cirúrgica II", dc:"co",
     t:"Na ala cirúrgica, J.S.S. queixa-se de dor intensa na cabeça. Qual é a conduta correta do técnico de enfermagem diante dessa situação?",
     o:["Administrar o analgésico prescrito anteriormente para outra queixa, pois o efeito será o mesmo e evita atraso no alívio da dor","Orientar o paciente a inspirar profundamente e tentar relaxar, pois a ansiedade pós-operatória costuma ser a principal causa de cefaleia","Pedir ao acompanhante que converse com o paciente para distrair sua atenção, reduzindo a percepção da dor sem uso de medicamentos","Descrever as características da dor — local, início, intensidade — registrar no prontuário e comunicar ao enfermeiro de forma imediata"],
@@ -1342,7 +1323,77 @@ const QS = [
     f:"Dor intensa de cabeça em paciente pós-operatório de cirurgia cerebral é um sinal de alerta sério — pode indicar novo sangramento ou outra complicação. O técnico nunca deve administrar medicamento sem prescrição. A conduta certa é descrever a dor (local, intensidade, início), registrar e comunicar ao enfermeiro urgentemente."
   },
   {
-    // Q25 — gabarito: A (c:0)
+    d:"Cirúrgica II", dc:"co",
+    t:"J.S.S. foi operado sob anestesia geral. Qual das alternativas descreve corretamente a anestesia geral balanceada, modalidade mais utilizada em neurocirurgias?",
+    o:["Usa exclusivamente anestésicos inalatórios em alta concentração, sem necessidade de medicação endovenosa durante o procedimento","Associa anestésicos inalatórios e endovenosos com analgésicos e bloqueadores neuromusculares para um efeito mais seguro e controlado","É aplicada apenas no local da cirurgia, bloqueando os nervos da região craniofacial sem afetar o nível de consciência","Consiste em sedação leve com propofol endovenoso, mantendo o paciente semiconsciente e colaborativo durante o procedimento"],
+    c:1,
+    f:"A anestesia geral balanceada combina anestésicos inalatórios (como sevoflurano) com endovenosos (como propofol), além de analgésicos opioides e bloqueadores neuromusculares. Essa combinação permite usar doses menores de cada agente, reduzindo efeitos colaterais e oferecendo controle mais preciso durante procedimentos longos como a craniotomia."
+  },
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"Ao receber J.S.S. de volta da sala cirúrgica, o técnico observa que os olhos do paciente ainda estão semiabertos. Qual cuidado específico é necessário nesse momento?",
+    o:["Fixar os olhos fechados com micropore para evitar ressecamento — essa é uma complicação comum que o técnico pode resolver independentemente","Proteger os olhos com colarinho cervical improvisado, pois pacientes pós-cirúrgicos têm risco de trauma ocular durante o transporte","Comunicar o enfermeiro imediatamente e proteger os olhos conforme prescrição, pois a anestesia geral reduz o reflexo de piscar e resseca a córnea","Administrar colírio lubrificante que esteja disponível no posto, pois olhos abertos após anestesia indicam que o paciente está acordando normalmente"],
+    c:2,
+    f:"A anestesia geral inibe o reflexo de piscar. Com os olhos abertos, a córnea resseca e pode sofrer úlcera de córnea — uma complicação grave. O técnico deve comunicar o enfermeiro e proteger os olhos conforme prescrição (compressa úmida ou colírio prescrito), nunca agir por conta própria com medicação."
+  },
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"Na ala cirúrgica, J.S.S. utilizou um dreno intracraniano no pós-operatório. Qual é a principal função desse dispositivo?",
+    o:["Administrar medicamentos diretamente no líquor cefalorraquidiano, como antibióticos e analgésicos prescritos pelo neurocirurgião","Drenar o excesso de líquido ou sangue acumulado após a cirurgia, prevenindo o aumento da pressão intracraniana","Medir continuamente a pressão dentro do crânio, servindo como sensor permanente para o monitor neurológico do CTI","Manter a cabeceira elevada automaticamente por pressão hidráulica, sem necessidade de ajuste manual pela equipe de enfermagem"],
+    c:1,
+    f:"O dreno cirúrgico — seja ventricular externo ou subdural — tem por função remover líquido, sangue ou líquor acumulados após a cirurgia cerebral, reduzindo a pressão intracraniana. O técnico deve observar o volume, a cor e a permeabilidade do dreno, registrar e comunicar qualquer alteração ao enfermeiro."
+  },
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"Durante a troca de curativo da ferida cirúrgica de J.S.S., o técnico observa secreção com odor fétido e vermelhidão intensa ao redor da incisão. Qual é a conduta correta?",
+    o:["Realizar debridamento manual com gaze e irrigar com soro fisiológico para remover a secreção antes de cobrir com novo curativo limpo","Finalizar a troca normalmente, usar gaze com pomada antibiótica disponível no posto e registrar que o curativo foi trocado sem intercorrências","Registrar as características da secreção — cor, odor, volume — e comunicar imediatamente ao enfermeiro sem finalizar a troca por conta própria","Cobrir o curativo com filme transparente para isolar a secreção e aguardar o médico fazer o desbridamento na visita seguinte"],
+    c:2,
+    f:"Secreção com odor fétido e hiperemia ao redor de ferida cirúrgica são sinais sugestivos de infecção do sítio cirúrgico. O técnico deve registrar detalhadamente as características (cor, volume, odor, aspecto da pele ao redor) e comunicar o enfermeiro imediatamente, sem aplicar nenhum produto sem prescrição."
+  },
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"J.S.S. recebe alta da ala cirúrgica. Quais são os principais sinais de alarme que a enfermagem deve incluir nas orientações para que o paciente retorne imediatamente ao hospital?",
+    o:["Qualquer ganho de peso acima de 500g por dia e cansaço ao subir escadas, pois indicam sobrecarga cardíaca após cirurgia cerebral","Dor no sítio cirúrgico nos primeiros 3 dias após a alta, pois é esperada e não necessita de retorno ao serviço de saúde","Nova dor de cabeça muito forte de início súbito, febre, piora da fraqueza no lado direito ou convulsão — todos são sinais de complicação grave","Tontura leve ao levantar e formigamento nos pés, pois são efeitos normais das medicações prescritas que se resolvem sozinhos"],
+    c:2,
+    f:"Os sinais de alarme após alta de cirurgia cerebral incluem: nova cefaleia intensa e súbita (possível ressangramento), febre (infecção), piora da força ou fala (déficit neurológico novo) e convulsão. A enfermagem deve instruir claramente o paciente e o familiar sobre cada um desses sinais e quando procurar o serviço de emergência."
+  },
+  {
+    d:"Cirúrgica II", dc:"co",
+    t:"Na ala cirúrgica, a equipe de enfermagem avalia o risco de queda de J.S.S. Quais medidas preventivas são indicadas para um paciente classificado como alto risco?",
+    o:["Restringir o paciente ao leito com faixas de imobilização para impedir que ele se levante sozinho sem supervisão","Manter a cama na posição mais alta disponível para que o paciente consiga avaliar a altura antes de qualquer tentativa de levantar","Manter a cama baixa, grades elevadas, campainha ao alcance, calçado antiderrapante e orientar que solicite ajuda antes de levantar","Retirar as grades da cama para facilitar a saída rápida quando o paciente precisar ir ao banheiro, evitando acidentes por pressa"],
+    c:2,
+    f:"Para pacientes com alto risco de queda as medidas padrão são: cama na posição mais baixa, grades elevadas dos dois lados, campainha ao alcance da mão, calçado antiderrapante e orientação verbal ao paciente e familiar para sempre pedir ajuda antes de levantar. Imobilizar o paciente sem indicação é uma restrição que fere a dignidade e não está indicada."
+  },
+  /* ==================== TERAPIA INTENSIVA (10) ==================== */
+  {
+    d:"Terapia Intensiva", dc:"cp",
+    t:"No CTI, J.S.S. estava intubado e em ventilação mecânica. Por que a higiene oral é considerada parte essencial dos cuidados de enfermagem nesse contexto?",
+    o:["Para facilitar a fixação do tubo endotraqueal e evitar que ele se desloque durante a aspiração de secreções","A boca seca favorece a proliferação de bactérias que, em pacientes intubados, podem descer pelo tubo e causar pneumonia","Para prevenir lesões nos lábios causadas pela pressão do esparadrapo de fixação do tubo endotraqueal","A higiene oral melhora a saturação de oxigênio ao desobstruir as vias aéreas superiores do paciente sedado"],
+    c:1,
+    f:"Paciente intubado não consegue cuspir ou limpar a boca sozinho. Bactérias acumuladas na boca podem descer pelo tubo e causar pneumonia — chamada PAV (Pneumonia Associada à Ventilação). A higiene oral é uma das principais medidas de prevenção dessa infecção."
+  },
+  {
+    d:"Terapia Intensiva", dc:"cp",
+    t:"Para avaliar o risco de lesão por pressão em pacientes críticos como J.S.S., qual instrumento a equipe de enfermagem deve aplicar?",
+    o:["Escala de Glasgow — quanto menor o valor, maior o risco de desenvolver lesão por pressão por rebaixamento de consciência","Escala de Barthel — avalia o grau de dependência nas atividades diárias, o que determina indiretamente o risco de escara","Escala de Braden — avalia fatores como mobilidade, umidade, nutrição e percepção sensorial para estimar o risco de LPP","Escala RASS — o nível de sedação interfere na movimentação espontânea e, por isso, é usada para classificar o risco de LPP"],
+    c:2,
+    f:"A Escala de Braden avalia itens como: o paciente consegue se mover? A pele está úmida? Ele está bem nutrido? Quanto menor a pontuação, maior o risco de desenvolver escara. Com base nisso, a enfermagem define a frequência da mudança de decúbito e outras medidas preventivas."
+  },
+  {
+    d:"Terapia Intensiva", dc:"cp",
+    t:"J.S.S. ficou imóvel no leito por muitos dias. Por que a equipe de enfermagem aplica medidas de prevenção de trombose venosa profunda (TVP)?",
+    o:["A circulação lenta nas veias das pernas pela imobilidade favorece a formação de coágulos que podem se desprender e atingir os pulmões","A sedação usada no CTI provoca vasodilatação excessiva nas pernas, o que aumenta o risco de formação de coágulos venosos","O tipo de aneurisma cerebral que J.S.S. tinha é geneticamente associado a maior tendência de trombose nas extremidades","O respirador mecânico gera variações de pressão no tórax que dificultam o retorno do sangue das pernas para o coração"],
+    c:0,
+    f:"Quando o paciente fica muito tempo parado, o sangue circula mais devagar nas veias das pernas e pode formar um coágulo — a TVP. Se esse coágulo se soltar, pode ir para o pulmão (embolia pulmonar), o que é gravíssimo. Meias compressivas e mobilização passiva dos membros ajudam a prevenir."
+  },
+  {
+    d:"Terapia Intensiva", dc:"cp",
+    t:"Dentre as medidas de prevenção de infecção em ambiente hospitalar, qual delas tem comprovação científica como a mais eficaz e deve ser realizada antes e depois de todo contato com o paciente?",
+    o:["Uso de avental descartável em todos os atendimentos, pois o uniforme é a principal via de transmissão de microrganismos","Troca de luvas entre um procedimento e outro, sem necessidade de higienizar as mãos quando se usa luvas descartáveis","Uso obrigatório de máscara cirúrgica em todos os ambientes hospitalares, independentemente do tipo de procedimento realizado","Higiene correta das mãos com água e sabão ou álcool gel, pois as mãos são a principal via de transmissão de infecções hospitalares"],
+    c:3,
+    f:"A higiene das mãos é a medida número 1 de prevenção de infecções hospitalares. A maioria das infecções no hospital é transmitida pelas mãos dos profissionais de saúde. Lavar as mãos corretamente (com água e sabão ou álcool gel) antes e depois de cada contato com o paciente é simples, grátis e salva vidas."
+  },
+  {
     d:"Terapia Intensiva", dc:"cp",
     t:"J.S.S. está com sonda vesical de demora (SVD) no CTI. Qual dos seguintes cuidados é essencial para prevenir infecção urinária associada à sonda?",
     o:["Manter o coletor sempre abaixo do nível da bexiga para que a urina escorra por gravidade, sem refluxo, e realizar higiene íntima diária","Trocar a sonda a cada 24 horas como rotina, independentemente de sinais de infecção, para renovar a proteção do sistema fechado","Clampear a sonda por 2 horas a cada turno, pois o acúmulo de urina na bexiga estimula os mecanismos naturais de defesa contra bactérias","Fixar o coletor na grade da cama na altura do abdome para reduzir a tensão da sonda e evitar tração durante a movimentação do leito"],
@@ -1350,15 +1401,13 @@ const QS = [
     f:"O coletor de urina deve ficar sempre abaixo do nível da bexiga para que a urina escorra por gravidade e não reflua. Se o coletor subir acima da bexiga, a urina pode retornar e causar infecção urinária — uma das IRAS mais comuns no CTI. A higiene íntima diária também é fundamental."
   },
   {
-    // Q26 — gabarito: C (c:2)
     d:"Terapia Intensiva", dc:"cp",
     t:"No plantão do CTI, o técnico verifica temperatura de 38,8°C em J.S.S. Qual é a interpretação correta desse achado e a conduta adequada?",
-    o:["Temperatura até 38,9°C é considerada febrícula e esperada nos primeiros dias após cirurgia cerebral — registrar e aguardar normalização espontânea","A elevação de temperatura indica resposta inflamatória saudável ao procedimento cirúrgico, sinalizando que o processo de cicatrização está ativo","Febre em paciente de CTI pode indicar infecção e exige registro, comunicação imediata ao enfermeiro e aguardar conduta prescrita","Comprimir o local com compressas frias nas axilas e virilha imediatamente, pois a febre acima de 38,5°C pode agravar a lesão cerebral"],
+    o:["Temperatura de 38,8°C está dentro do esperado no pós-operatório imediato e não requer comunicação ao enfermeiro — registrar e aguardar normalização espontânea","A elevação de temperatura indica resposta inflamatória saudável ao procedimento cirúrgico, sinalizando que o processo de cicatrização está ativo","Febre em paciente de CTI pode indicar infecção e exige registro, comunicação imediata ao enfermeiro e aguardar conduta prescrita","Comprimir o local com compressas frias nas axilas e virilha imediatamente, pois a febre acima de 38,5°C pode agravar a lesão cerebral"],
     c:2,
     f:"Febre em paciente de CTI, especialmente após cirurgia, é sempre um sinal de alerta. Pode indicar pneumonia, infecção urinária, infecção da ferida cirúrgica ou outras complicações. O técnico deve registrar corretamente a temperatura, comunicar ao enfermeiro e não tomar nenhuma conduta medicamentosa sem prescrição."
   },
   {
-    // Q27 — gabarito: D (c:3)
     d:"Terapia Intensiva", dc:"cp",
     t:"J.S.S. está sedado e imóvel no CTI há vários dias. Com que frequência a enfermagem deve realizar a mudança de decúbito para proteger a pele?",
     o:["A cada 8 horas, coincidindo com a troca de turno — assim toda equipe que assume o plantão já faz a mudança como primeiro cuidado","A cada 4 horas, intercalando com os horários de verificação de sinais vitais para otimizar o tempo da equipe no CTI","Uma vez por turno, preferencialmente durante o banho no leito, quando o paciente já está sendo movimentado de qualquer forma","A cada 2 horas, alternando os decúbitos e registrando a posição adotada em cada troca no prontuário de enfermagem"],
@@ -1366,7 +1415,6 @@ const QS = [
     f:"A mudança de decúbito deve ocorrer a cada 2 horas em pacientes que não conseguem se mobilizar. Isso alivia a pressão sobre os pontos de risco — sacro, calcanhares, cotovelos e região occipital — mantendo a circulação nesses locais. Cada mudança deve ser registrada no prontuário de enfermagem."
   },
   {
-    // Q28 — gabarito: B (c:1)
     d:"Terapia Intensiva", dc:"cp",
     t:"A família de J.S.S. aborda o técnico no corredor do CTI e pergunta se o paciente vai se recuperar e quando poderá ter alta. Qual é a conduta correta?",
     o:["Explicar o diagnóstico de forma resumida e dar uma estimativa de alta baseada no tempo médio de internação para esse tipo de cirurgia","Acolher a família com empatia, explicar que informações clínicas são de responsabilidade do enfermeiro ou médico e orientá-los a buscá-los","Dizer que o paciente está bem e evoluindo positivamente, mesmo sem ter acesso ao prontuário, para tranquilizar os familiares","Pedir que a família retorne apenas nos horários oficiais de visita, pois conversas no corredor interrompem os cuidados aos pacientes"],
@@ -1374,14 +1422,21 @@ const QS = [
     f:"Dar informações sobre diagnóstico, prognóstico e evolução clínica é atribuição do enfermeiro e do médico — não do técnico de enfermagem. O técnico deve demonstrar empatia, acolher a família com respeito e orientá-la a buscar essas informações com o profissional responsável pelo caso."
   },
   {
-    // Q29 — gabarito: A (c:0)
     d:"Terapia Intensiva", dc:"cp",
     t:"J.S.S. começa a melhorar e a fisioterapia motora é iniciada ainda no CTI. Por que esse cuidado é iniciado tão cedo, antes mesmo da transferência para a ala cirúrgica?",
     o:["A imobilidade prolongada enfraquece os músculos rapidamente, e a fisioterapia precoce preserva a força, melhora a circulação e acelera a recuperação geral","A fisioterapia precoce substitui a necessidade de mudança de decúbito, reduzindo a carga de trabalho da equipe de enfermagem no CTI","O objetivo principal é avaliar o nível de consciência do paciente durante os exercícios, complementando a escala de Glasgow","A fisioterapia é iniciada cedo principalmente para treinar a respiração espontânea, sendo a recuperação motora apenas um benefício secundário"],
     c:0,
     f:"Quando o paciente fica muito tempo parado no leito, os músculos perdem força rapidamente — fenômeno chamado de fraqueza por imobilidade. A fisioterapia motora precoce, mesmo que passiva, mantém a circulação, preserva a força muscular e acelera a recuperação geral do paciente, contribuindo também para o desmame do respirador."
+  },
+  {
+    d:"Terapia Intensiva", dc:"cp",
+    t:"J.S.S. está em uso de drogas vasoativas (noradrenalina) no CTI para manter a pressão arterial. Qual é a responsabilidade do técnico de enfermagem em relação a esse tipo de medicação?",
+    o:["Ajustar a velocidade da bomba de infusão conforme os valores de pressão aferidos, seguindo os parâmetros definidos pelo médico na admissão","Administrar o bolus inicial de noradrenalina na veia periférica antes de transferir para o cateter venoso central prescrito","Verificar continuamente a permeabilidade do acesso venoso central, registrar os sinais vitais e comunicar qualquer variação ao enfermeiro","Preparar a solução de noradrenalina de forma independente quando o frasco acabar, usando o protocolo padrão de diluição do CTI"],
+    c:2,
+    f:"Drogas vasoativas são medicações de alta vigilância — qualquer erro pode ser fatal. O técnico de enfermagem não deve ajustar a velocidade nem preparar a solução de forma independente. Sua função é verificar o acesso venoso, monitorar os sinais vitais e comunicar imediatamente qualquer variação ao enfermeiro, que irá conduzir os ajustes com o médico."
   }
 ];
+
 
 let cur=0, score=0, answered=false;
 
